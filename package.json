@@ -28,7 +28,9 @@
     "prepare": "husky install"
   },
   "eslintConfig": {
-
+    "extends": [
+      "react-app"
+    ]
   },
   "browserslist": {
     "production": [
