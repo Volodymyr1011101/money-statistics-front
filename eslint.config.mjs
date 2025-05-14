@@ -1,6 +1,8 @@
-import { defineConfig } from 'eslint';
+import pkg from 'eslint';
 
-export default defineConfig({
+const { ESLint } = pkg;
+
+export default {
     env: {
         browser: true,
         es2021: true,
@@ -9,6 +11,7 @@ export default defineConfig({
         'eslint:recommended',
         'plugin:react/recommended',
         'plugin:react/jsx-runtime',
+        'eslint-config-airbnb',
     ],
     parserOptions: {
         ecmaVersion: 2021,
@@ -28,4 +31,4 @@ export default defineConfig({
         'no-unused-vars': ['warn', { 'argsIgnorePattern': '^_' }], // Игнорирование неиспользуемых переменных, начинающихся с _
         'import/newline-after-import': ['error', { 'count': 1 }], // Пустая строка после импортов
     },
-});
+};
