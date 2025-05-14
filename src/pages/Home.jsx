@@ -1,4 +1,5 @@
 const Home = () => {
+    const t = ""
     return (
         <h1>Home</h1>
     )
