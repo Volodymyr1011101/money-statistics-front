@@ -1,0 +1,11 @@
+.userinfo_wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.link_name {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    color: #FCFCFC;
+}

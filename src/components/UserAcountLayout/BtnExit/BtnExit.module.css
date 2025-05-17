@@ -1,0 +1,17 @@
+.btn_exit {
+    background-color: transparent;
+    color: #FCFCFC;
+    border: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    padding: 6px 8px;
+    display: flex;
+    gap: 8px;
+    border-left: 1px solid #FCFCFC;
+    cursor: pointer;
+}
+
+.svg_exit {
+    width: 18px;
+    height: 18px;
+}
