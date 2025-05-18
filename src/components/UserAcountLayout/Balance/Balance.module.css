@@ -1,0 +1,42 @@
+.balance_wrapper {
+    min-width: 288px;
+    margin: 0 auto;
+    padding: 24px 16px;
+    background: linear-gradient(to bottom, #355359 0%, #3B5D63 100%);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.balance_title {
+    color: #FCFCFC;
+    opacity: 40%;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.083;
+}
+
+.balance_sum {
+    color: #FCFCFC;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+/*Планшет*/
+@media (min-width: 768px) {
+    .balance_wrapper {
+        min-width: 338px;
+        padding: 38px 16px;
+    }
+}
+
+/*Десктоп*/
+@media (min-width: 1280px) {
+    .balance_wrapper {
+        min-width: 400px;
+        padding: 0 0 0 13px;
+        background: none;
+    }
+}

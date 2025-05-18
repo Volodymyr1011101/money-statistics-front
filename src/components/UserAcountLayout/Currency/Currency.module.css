@@ -1,0 +1,35 @@
+.wrapper_currency {
+    max-width: 288px;
+    margin: 0 auto;
+    padding: 16px;
+    background: linear-gradient(to bottom, #355359 0%, #3B5D63 100%);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+.currency_img {
+    margin: 0 auto;
+}
+
+/*Планшет*/
+@media (min-width: 768px) {
+    .wrapper_currency{
+        min-width: 336px;
+        gap: 9px;
+    }
+    .currency_img {
+        width: 181px;   
+    }
+}
+
+/*Десктоп*/
+@media (min-width: 1280px) {
+    .wrapper_currency {
+        padding: 0;
+        gap: 22px;
+    }
+    .currency_img {
+        width: 222px;
+    }
+}

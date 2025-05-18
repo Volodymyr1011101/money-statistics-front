@@ -3,6 +3,7 @@ import {
 } from "react-router";
 import Home from "../pages/Home";
 import Layout from "../components/UserAcountLayout/Layout/Layout";
+import CurrencyPage from "../pages/CurrencyPage";
 
 // export const router = createBrowserRouter([
 //     {
@@ -19,6 +20,10 @@ export const router = createBrowserRouter([
         {
           index: true,
           element: <Home />
+        },
+        {
+          path: 'currency',
+          element: <CurrencyPage />
         },
       ]
     }
