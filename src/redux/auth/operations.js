@@ -4,83 +4,60 @@ import iziToast from "izitoast";
 
 axios.defaults.baseURL = "https://connections-api.goit.global";
 
-// const setAuthHeader = (token) => {
-//   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-// };
+const setAuthHeader = (token) => {
+  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+};
 
-// const clearAuthHeader = () => {
-//   axios.defaults.headers.common.Authorization = '';
-// };
+const clearAuthHeader = () => {
+  axios.defaults.headers.common.Authorization = "";
+};
 
 export const register = createAsyncThunk(
   "auth/register",
-  async (userData, { rejectWithValue }) => {
+  async (registerData, thunkAPI) => {
     try {
-      const response = await axios.post("/api/register", userData);
+      const response = await axios.post("/users/signup", registerData);
+      setAuthHeader(response.data.token);
+
       return response.data;
     } catch (error) {
-      const message =
-        error.response?.data?.message ||
-        "Sorry, something went wrong during registration. Please try again or contact support";
-      toast.error(message);
-      return rejectWithValue(message);
+      iziToast.error({
+        title: "Error",
+        message:
+          "Sorry, something went wrong during registration. Please try again or contact support",
+      });
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
-// export const login = createAsyncThunk(
-//   'auth/login',
-//   async (loginData, thunkAPI) => {
-//     try {
-//       const response = await axios.post('/users/login', loginData);
-//       setAuthHeader(response.data.token);
+export const refreshUser = createAsyncThunk(
+  "auth/refresh",
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
 
-//       return response.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
+    if (persistedToken === null) {
+      return thunkAPI.rejectWithValue("Unable to fetch user");
+    }
 
-// export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
-//   //   console.log('thunkAPI: ', thunkAPI);
-//   try {
-//     const response = await axios.post('/users/logout');
-//     clearAuthHeader();
+    try {
+      setAuthHeader(persistedToken);
+      const response = await axios.get("/users/current");
+      //   console.log('response: ', response);
 
-//     return response.data;
-//   } catch (error) {
-//     return thunkAPI.rejectWithValue(error.message);
-//   }
-// });
-
-// export const refreshUser = createAsyncThunk(
-//   'auth/refresh',
-//   async (_, thunkAPI) => {
-//     const state = thunkAPI.getState();
-//     const persistedToken = state.auth.token;
-
-//     if (persistedToken === null) {
-//       return thunkAPI.rejectWithValue('Unable to fetch user');
-//     }
-
-//     try {
-//       setAuthHeader(persistedToken);
-//       const response = await axios.get('/users/current');
-//       //   console.log('response: ', response);
-
-//       return response.data;
-//     } catch (error) {
-//       clearAuthHeader();
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   },
-//   {
-//     condition: (_, { getState }) => {
-//       const { auth } = getState();
-//       if (!auth.token) {
-//         return false;
-//       }
-//     },
-//   }
-// );
+      return response.data;
+    } catch (error) {
+      clearAuthHeader();
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  },
+  {
+    condition: (_, { getState }) => {
+      const { auth } = getState();
+      if (!auth.token) {
+        return false;
+      }
+    },
+  }
+);

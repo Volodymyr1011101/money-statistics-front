@@ -1,28 +1,50 @@
-import { useState } from "react";
-import Header from "./components/UserAcountLayout/Header/Header";
-import RegistrationForm from "./components/UserAcountLayout/RegistrationForm/RegistrationForm";
+import { Toaster } from 'react-hot-toast';
+import { Route, Routes } from 'react-router';
+import { useDispatch, useSelector } from 'react-redux';
+import { lazy, useEffect } from 'react';
 
-function App() {
-  const [showForm, setShowForm] = useState(false);
+import { selectIsRefreshing } from './redux/auth/selectors';
+import { refreshUser } from './redux/auth/operations';
 
-  const toggleForm = () => {
-    setShowForm((prev) => !prev);
-  };
+import Layout from './components/UserAcountLayout/Layout/Layout';
+// import Loader from "./components/Loader/Loader";
+import PrivateRoute from './components/UserAcountLayout/PrivateRoute/PrivateRoute';
+import RestrictedRoute from './components/UserAcountLayout/RestrictedRoute/RestrictedRoute';
+
+const HomePage = lazy(() => import('./pages/Home'));
+const RegisterPage = lazy(() => import('./pages/RegisterPage'));
+
+const App = () => {
+  const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectIsRefreshing);
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
 
   return (
-    <div className="App">
-      <Header onLogoClick={toggleForm} />
-
-      {showForm && (
-        <div>
-          <h2>Name</h2>
-          <RegistrationForm />
-        </div>
+    <>
+      {isRefreshing ? (
+        <Loader />
+      ) : (
+        <Layout>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route
+              path="/register"
+              element={
+                <RestrictedRoute
+                  redirectTo="/dashboard"
+                  component={<RegisterPage />}
+                />
+              }
+            />
+          </Routes>
+        </Layout>
       )}
-
-      {/* Інший контент сторінки */}
-    </div>
+      <Toaster position="top-right" reverseOrder={false} />
+    </>
   );
-}
+};
 
 export default App;
