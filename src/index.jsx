@@ -1,25 +1,27 @@
-import React, { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
+import React from "react";
+import ReactDOM from "react-dom/client";
 import "modern-normalize";
 import "./index.css";
-import { Provider } from "react-redux";
-import { BrowserRouter } from "react-router-dom";
-import { PersistGate } from "redux-persist/integration/react";
-import { store, persistor } from "./redux/store";
 import App from "./App.jsx";
+import { Provider } from "react-redux";
+import { store, persistor } from "./redux/store";
+import { PersistGate } from "redux-persist/integration/react";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./router/router";
 import { Toaster } from "react-hot-toast";
 
-createRoot(document.getElementById("root")).render(
-  <StrictMode>
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <BrowserRouter>
-          <App />
-          <Toaster position="top-right" toastOptions={{ duration: 1000 }} />
-        </BrowserRouter>
+       <RouterProvider router={router}>
+        <App />
+        <Toaster position="top-right" toastOptions={{duration: 1000}} />
+       </RouterProvider>
       </PersistGate>
     </Provider>
-  </StrictMode>
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
