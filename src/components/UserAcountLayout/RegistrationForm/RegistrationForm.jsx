@@ -33,26 +33,32 @@ const RegistrationForm = () => {
   const passwordId = useId();
   const confirmPasswordId = useId();
 
-  useEffect(() => {
-    if (error) {
-      toast.error(error);
-    }
-  }, [error]);
+  // useEffect(() => {
+  //   if (error) {
+  //     toast.error(error);
+  //   }
+  // }, [error]);
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      navigate("/dashboard");
-    }
-  }, [isLoggedIn, navigate]);
+  // useEffect(() => {
+  //   if (isLoggedIn) {
+  //     navigate("/dashboard");
+  //   }
+  // }, [isLoggedIn, navigate]);
 
-  const handleSubmit = async (values, actions) => {
-    try {
-      await dispatch(
-        register({ email: values.email, password: values.password })
-      ).unwrap();
-      actions.resetForm();
-    } catch (err) {}
+  // const handleSubmit = async (values, actions) => {
+  //   try {
+  //     await dispatch(
+  //       register({ email: values.email, password: values.password })
+  //     ).unwrap();
+  //     actions.resetForm();
+  //   } catch (err) {}
+  //   actions.setSubmitting(false);
+  // };
+
+  const handleSubmit = (values, actions) => {
+    dispatch(register(values));
     actions.setSubmitting(false);
+    actions.resetForm();
   };
 
   return (
