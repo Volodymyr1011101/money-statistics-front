@@ -4,8 +4,9 @@ import s from '../Balance/Balance.module.css'
 const Balance = () => {
 
   const getBalance = () => {
+
     return ("Balance")
-  } //запрос на бэк сумма баланса
+  } //получение баланса из store
 
   return (
     <div className={s.balance_wrapper}>
