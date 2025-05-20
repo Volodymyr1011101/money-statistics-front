@@ -1,0 +1,68 @@
+.wrapper_table {
+    width: 100%;
+    margin: 0 auto;
+}
+.table { 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+.table_tr {
+    background: linear-gradient(180deg, #294045 0%, #1e2f33 100%);
+    padding: 18px 11px;
+    border-radius: 12px;
+    display: flex;
+    gap: 37.5px;
+}
+.table_th {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.1;
+    color: #FCFCFC;
+}
+.table_body {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+.table_td_currency {
+    padding-right: 15px;
+    color: #FCFCFC;
+    font-size: 14px;
+}
+.table_td_rate {
+    padding-left: 47px;
+    color: #FCFCFC;
+    font-size: 14px;
+}
+
+/*Планшет*/
+@media (min-width: 768px) {
+    .table_tr {
+        padding: 16px 32px;
+        gap: 30px;
+    }
+    .table_th {
+        font-size: 16px;
+    }
+    .table_body {
+        gap: 29px;
+    }
+    .table_td_rate {
+        padding-left: 60px;
+    }
+}
+
+/*Десктоп*/
+@media (min-width: 1280px) {
+    .wrapper_table {
+
+    }
+    .table_tr {
+        gap: 78px
+    }
+    .table_td_rate {
+        padding-left: 107px;
+    }
+}

@@ -1,27 +1,29 @@
-import { useState } from "react";
-import Header from "./components/UserAcountLayout/Header/Header";
-import RegistrationForm from "./components/UserAcountLayout/RegistrationForm/RegistrationForm";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+
+import { RouterProvider } from "react-router-dom";
+import { router } from "./router/router";
+
+import { selectIsRefreshing } from "./redux/auth/selectors";
+import { refreshUserThunk } from "./redux/auth/operations";
+import { Suspense } from "react";
 
 function App() {
-  const [showForm, setShowForm] = useState(false);
+  const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectIsRefreshing);
 
-  const toggleForm = () => {
-    setShowForm((prev) => !prev);
-  };
 
-  return (
-    <div className="App">
-      <Header onLogoClick={toggleForm} />
+  useEffect(() => {
+    dispatch(refreshUserThunk());
+  }, [dispatch]);
 
-      {showForm && (
-        <div>
-          <h2>Name</h2>
-          <RegistrationForm />
-        </div>
-      )}
-
-      {/* Інший контент сторінки */}
-    </div>
+  return isRefreshing ? null : (
+    // TODO: add PageLoader
+    <Suspense fallback={<p>Loading .......</p>}>
+      <div className="App">
+        <RouterProvider router={router} />;
+      </div>
+    </Suspense>
   );
 }
 

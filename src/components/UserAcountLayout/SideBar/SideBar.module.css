@@ -1,0 +1,45 @@
+.sidebar_wrapper {
+    padding: 24px 16px;
+}
+.sidebar_mob {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+/*Планшет*/
+@media (min-width: 768px) {
+    .sidebar_wrapper {
+        padding: 32px;
+        display: flex;
+        gap: 32px;
+        justify-content: center;
+    }
+    .Tab_left {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+    }
+}
+
+/*Десктоп*/
+@media (min-width: 1280px) {
+    .sidebar_wrapper {
+        max-width: 1280px;
+        margin: 0 auto;
+        justify-content: flex-start;
+    }
+    .desc_sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        max-width: 451px;
+    }
+    .desc_bal_cur {
+        padding: 24px;
+        background: linear-gradient(to bottom, #355359 0%, #3B5D63 100%);
+        border-radius: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+}

@@ -10,6 +10,7 @@ const BtnExit = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
+    //реализовать логику через redux
     setShowModal(false);
     navigate('/login'); 
   };
