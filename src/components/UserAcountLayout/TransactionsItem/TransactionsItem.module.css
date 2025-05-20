@@ -1,0 +1,158 @@
+.container {
+    position: relative;
+    display: block;
+    border-radius: .75rem;
+    overflow: hidden;
+}
+
+.transactionIncome,
+.transactionExpense {
+    background-color: #3B5D63;
+    color: white;
+    border-left: 4px solid;
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.transactionIncome {
+    border-color: #1dd1a1;
+}
+
+.transactionExpense {
+    border-color: #feca57;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.95rem;
+    padding: .5rem 1rem;
+    word-break: break-word;
+    border-bottom: 1px solid #FCFCFC;
+
+}
+
+.income {
+    color: #1dd1a1;
+    font-weight: bold;
+}
+
+.expense {
+    color: #feca57;
+    font-weight: bold;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+    padding: .5rem 1rem;
+    flex-wrap: wrap;
+}
+
+.deleteButton,
+.editButton {
+    background: none;
+    padding: 0.25rem 0.5rem;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.deleteButton {
+    border: 1px solid #ccc;
+}
+
+.editButton {
+    border: none;
+}
+
+
+.deleteButton:hover {
+    background-color: #ff6b6b;
+    border-color: #ff6b6b;
+}
+
+.editButton:hover {
+    background-color: #54a0ff;
+    border-color: #54a0ff;
+}
+
+
+
+
+/* Tablet  */
+
+@media (min-width: 769px) {
+
+    .container {
+        height: 48px;
+        min-height: 48px;
+        box-sizing: border-box;
+
+        font-size: 14px;
+        font-weight: 400;
+        margin: 0;
+
+    }
+
+
+
+    .transactionIncome,
+    .transactionExpense {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0;
+        padding: 0.75rem 1rem;
+    }
+
+    .row {
+        padding: 0;
+        font-size: 0.9rem;
+    }
+
+    .actions {
+        gap: 0.5rem;
+        padding-top: 0;
+    }
+
+    .tableBody {
+        height: 48px;
+        min-height: 48px;
+        box-sizing: border-box;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr) auto auto;
+        align-items: center;
+        padding: 0.1rem 1rem;
+        color: white;
+        border-radius: 16px;
+    }
+
+    .container:nth-child(odd):not(:first-child) {
+        background-color: #1e2a38;
+    }
+
+    .type {
+        text-align: center;
+    }
+
+    .editButton {
+        text-align: left;
+        padding-left: 0;
+        padding-right: 1rem;
+    }
+
+    .comment {
+        width: 80%;
+        white-space: normal;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+
+
+    /* Desktop */
+    @media (min-width: 1280px) {}
+}
