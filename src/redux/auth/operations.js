@@ -49,6 +49,11 @@ export const refreshUserThunk = createAsyncThunk(
 );
 
 axios.defaults.baseURL = "https://connections-api.goit.global";
+
+const clearAuthHeader = () => {
+  axios.defaults.headers.common.Authorization = "";
+};
+
 export const register = createAsyncThunk(
     "auth/register",
     async (userData, { rejectWithValue }) => {
