@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { Toaster } from "react-hot-toast";
 import "modern-normalize";
 import "./index.css";
-import App from "./App";
+import App from "./App.jsx";
 import { Provider } from "react-redux";
-import { persistor, store } from "./redux/store.js";
+import { store, persistor } from "./redux/store";
 import { PersistGate } from "redux-persist/integration/react";
+import { Toaster } from "react-hot-toast";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
