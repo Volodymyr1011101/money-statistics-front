@@ -1,0 +1,156 @@
+.wrapper {
+    height: 100%;
+}
+
+
+.container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-items: center;
+    padding: 1rem;
+    min-width: 288px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.stub {
+    text-align: center;
+    color: white;
+    font-family: Inter;
+    font-size: 24px;
+    padding-top: 60px;
+}
+
+.fabContainer {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 8%;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: #508f8c;
+    border: 2px solid transparent;
+    color: black;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.fab {
+    background-color: #508f8c;
+    font-size: 4rem;
+    font-weight: 200;
+    text-align: center;
+    padding-bottom: .6rem;
+
+}
+
+.fab:hover {
+    background-color: blue;
+}
+
+
+/* Tablet */
+
+@media (min-width: 769px) {
+
+    .container {
+        height: 538px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        background-color: #3B5D63;
+        border-radius: 16px;
+    }
+
+    /* Для FireFox */
+    .container {
+        /* scrollbar-width: thin;
+        scrollbar-color: #ccc #222; */
+        position: relative;
+    }
+
+    /* Для Chrome, Edge, Safari */
+    .container::-webkit-scrollbar {
+        width: 2px;
+    }
+
+    .container::-webkit-scrollbar-track {
+        background: #222;
+        border-radius: 4px;
+    }
+
+    .container::-webkit-scrollbar-button {
+        display: none;
+    }
+
+    .container::-webkit-scrollbar-thumb {
+        background-color: #ccc;
+        border-radius: 4px;
+        margin: 0 auto;
+        height: 70%;
+    }
+
+    .container::-webkit-scrollbar-thumb:hover {
+        background-color: #aaa;
+    }
+
+
+    .tableHeader {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr) auto auto;
+        align-items: center;
+        padding: 0.1rem 1rem;
+        color: white;
+        border-radius: 16px;
+        height: 48px;
+    }
+
+
+    .invis {
+        color: #3B5D63;
+    }
+
+    .type {
+        text-align: center;
+    }
+
+    .fabContainer {
+        width: 64px;
+        height: 64px;
+        bottom: 3.5rem;
+        right: 5%;
+
+    }
+
+    .fab {
+        font-size: 5rem;
+
+    }
+
+
+}
+
+/* Desktop */
+@media (min-width: 1280px) {
+    .container {
+        max-width: 757px;
+    }
+
+    .fabContainer {
+        width: 56px;
+        height: 56px;
+        right: calc(50% - 364px);
+        bottom: 3.75rem;
+
+    }
+
+    .fab {
+        font-size: 4rem;
+
+    }
+}
