@@ -5,6 +5,8 @@ const initialState = {
   user: {
     name: null,
     email: null,
+    balance: 0,
+    avatar: null,
   },
   token: null,
   isLoggedIn: false,
