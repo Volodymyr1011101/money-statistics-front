@@ -3,6 +3,9 @@ import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
 import { NavLink } from "react-router-dom";
+import { clsx } from "clsx";
+import { MdEmail } from "react-icons/md";
+import { TbLockFilled } from "react-icons/tb";
 
 import css from "./LoginForm.module.css";
 import Button from "../../../UI/Button/Button";
@@ -11,12 +14,16 @@ import { loginThunk } from "../../../redux/auth/operations";
 import Img from "../../../assets/currency_img.png";
 import logo_modal from "../../../assets/Logo_modal.svg";
 import Logo from "../../../UI/Logo/Logo";
+
 import { emailRegex, passwordRegex } from "../../../helpers/constants";
 
 const validation = Yup.object().shape({
   email: Yup.string()
     .email("Invalid email format")
-    .matches(emailRegex)
+    .matches(
+      emailRegex,
+      "The email must contain @, start from letter, domain name(gmail), '.',  top-level domain (com)"
+    )
     .required("Required field"),
   password: Yup.string()
     .required("Required field")
@@ -51,18 +58,28 @@ const LoginForm = () => {
       validationSchema={validation}
       onSubmit={handleSubmit}
     >
-      {({ isSubmitting, values, handleChange }) => (
+      {({ isSubmitting, values, handleChange, errors, touched, status }) => (
         <Form className={css.loginContact}>
           <Logo img={logo_modal} className={css.logo} />
           <div className={css.loginInputWrap}>
             <Field
-              className={css.loginInput}
+              className={clsx(css.loginInput, {
+                [css.error]: errors.email && touched.email,
+                [css.success]: touched.email && !errors.email,
+              })}
               type="email"
               name="email"
-              placeHolder="E-mail"
+              placeholder="E-mail"
               onChange={handleChange}
               value={values.email}
             />
+            <MdEmail
+              className={clsx(css.emailIcon, {
+                [css.error]: errors.email && touched.email,
+                [css.success]: touched.email && !errors.email,
+              })}
+            />
+
             <ErrorMessage
               className={css.loginErrorMessage}
               name="email"
@@ -71,12 +88,21 @@ const LoginForm = () => {
           </div>
           <div className={css.loginInputWrap}>
             <Field
-              className={css.loginInput}
+              className={clsx(css.loginInput, {
+                [css.error]: errors.password && touched.password,
+                [css.success]: touched.password && !errors.password,
+              })}
               type="password"
               name="password"
-              placeHolder="Password"
+              placeholder="Password"
               onChange={handleChange}
               value={values.password}
+            />
+            <TbLockFilled
+              className={clsx(css.emailIcon, {
+                [css.error]: errors.password && touched.password,
+                [css.success]: touched.password && !errors.password,
+              })}
             />
             <ErrorMessage
               className={css.loginErrorMessage}

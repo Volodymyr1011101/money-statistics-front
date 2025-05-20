@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const api = axios.create({
-  // set real backend url
+  // TODO: set real backend url
   baseURL: "http://localhost:3000",
 });
 
