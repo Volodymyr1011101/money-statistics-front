@@ -1,0 +1,90 @@
+.nav {
+    padding: 0 46px;
+}
+
+.list {
+    padding: 3px;
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+}
+
+.icon {
+    font-size: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #3B5D63;
+    border-radius: 6px;
+    color: inherit;
+}
+
+.label {
+    display: none;
+}
+
+.link {
+    color: #FCFCFC;
+    opacity: 50%;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.active {
+    opacity: 100%;
+}
+
+/*Планшет*/
+@media (min-width: 768px) {
+    .nav {
+        padding: 0;
+    }
+
+    .list {
+        min-width: 338px;
+        background: linear-gradient(to bottom, #355359 0%, #3B5D63 100%);
+        padding: 35px 199px 35px 16px;
+        border-radius: 16px;
+        flex-direction: column;
+        gap: 24px;
+        align-items: flex-start;
+    }
+
+    .icon {
+        font-size: 18px;
+        margin-right: 20px;
+        border-radius: 3px;
+        padding: 3px;
+        color: #294045;
+        background-color: #FCFCFC;
+        opacity: 40%;
+    }
+
+    .link.active .icon {
+        color: #FCFCFC;
+        background-color: #1E2F33;
+        opacity: 100%;
+    }
+
+    .label {
+        display: block;
+        font-size: 18px;
+        letter-spacing: 0.01em;
+        line-height: 1.22;
+    }
+
+    .link.active .label {
+        font-weight: 700;
+    }
+}
+
+/* Десктоп */
+@media (min-width: 1280px) {
+    .list {
+        min-width: 451px;
+        padding: 16px 296px 16px 32px;
+        gap: 12px;
+    }
+} 
