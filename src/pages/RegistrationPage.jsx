@@ -3,7 +3,7 @@ import RegistrationForm from '../components/UserAcountLayout/RegistrationForm/Re
 const RegistrationPage = () => {
   return (
     <div>
-      <h1>Registration</h1>
+      {/* <h1>Registration</h1> */}
       <RegistrationForm />
     </div>
   );

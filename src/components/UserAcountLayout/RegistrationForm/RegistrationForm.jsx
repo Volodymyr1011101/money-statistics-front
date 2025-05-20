@@ -3,14 +3,18 @@ import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { useId } from 'react';
 import PasswordStrengthBar from 'react-password-strength-bar';
-import { useMediaQuery } from 'react-responsive'; 
+import { useMediaQuery } from 'react-responsive';
+import { FaUser, FaEnvelope, FaLock } from 'react-icons/fa';
 
 import { register } from '../../../redux/auth/operations';
+import Logo from '../../../UI/Logo/Logo';
+import logo from '../../../assets/Logo.svg';
 import css from './RegistrationForm.module.css';
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 const validation = Yup.object().shape({
+  name: Yup.string().required('Required field'),
   email: Yup.string()
     .required('Required field')
     .matches(emailRegex, 'Invalid email format'),
@@ -19,7 +23,7 @@ const validation = Yup.object().shape({
     .min(8, 'Password must contain at least 8 characters')
     .matches(
       /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/,
-      'The password must contain at least one number, one uppercase letter, and one lowercase letter'
+      'Password must contain at least one number, one uppercase letter, and one lowercase letter'
     ),
   confirmPassword: Yup.string()
     .oneOf([Yup.ref('password'), null], 'Passwords do not match')
@@ -27,6 +31,7 @@ const validation = Yup.object().shape({
 });
 
 const initialValues = {
+  name: '',
   email: '',
   password: '',
   confirmPassword: '',
@@ -36,6 +41,7 @@ const RegistrationForm = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
 
   const dispatch = useDispatch();
+  const nameId = useId();
   const emailId = useId();
   const passwordId = useId();
   const confirmPasswordId = useId();
@@ -52,93 +58,130 @@ const RegistrationForm = () => {
       validationSchema={validation}
       onSubmit={handleSubmit}
     >
-      {({ isSubmitting, values }) => (
-        <Form
-          className={
-            isMobile
-              ? `${css.registerContact} ${css.mobile}`
-              : css.registerContact
-          }
-        >
-          <label className={css.registerLabel} htmlFor={emailId}>
-            Email
-          </label>
-          <div className={css.registerInputWrap}>
-            <Field
-              className={css.registerInput}
-              type="email"
-              name="email"
-              id={emailId}
-            />
-            <ErrorMessage
-              className={css.registerErrorMessage}
-              name="email"
-              component="div"
-            />
-          </div>
+      {({ isSubmitting, values, touched }) => (
+        <div className={css.registerOverlay}>
+          <Form className={css.registerContact}>
+            <div className={css.registerLogo}>
+              <Logo img={logo} className={css.logo} />
+            </div>
 
-          <label className={css.registerLabel} htmlFor={passwordId}>
-            Password
-          </label>
-          <div className={css.registerInputWrap}>
-            <Field
-              className={css.registerInput}
-              type="password"
-              name="password"
-              id={passwordId}
-            />
-            <ErrorMessage
-              className={css.registerErrorMessage}
-              name="password"
-              component="div"
-            />
-          </div>
+            <div className={css.inputIconWrap}>
+              <div className={css.inputGroup}>
+                <FaUser className={css.icon} />
+                <Field
+                  className={css.registerInput}
+                  type="text"
+                  name="name"
+                  id={nameId}
+                  placeholder="Name"
+                />
+              </div>
+              <ErrorMessage
+                className={css.registerErrorMessage}
+                name="name"
+                component="div"
+              />
+            </div>
 
-          <label className={css.registerLabel} htmlFor={confirmPasswordId}>
-            Confirm Password
-          </label>
-          <div className={css.registerInputWrap}>
-            <Field
-              className={css.registerInput}
-              type="password"
-              name="confirmPassword"
-              id={confirmPasswordId}
-            />
-            <ErrorMessage
-              className={css.registerErrorMessage}
-              name="confirmPassword"
-              component="div"
-            />
-          </div>
+            <div className={css.inputIconWrap}>
+              <div className={css.inputGroup}>
+                <FaEnvelope className={css.icon} />
+                <Field
+                  className={css.registerInput}
+                  type="email"
+                  name="email"
+                  id={emailId}
+                  placeholder="E-mail"
+                />
+              </div>
+              <ErrorMessage
+                className={css.registerErrorMessage}
+                name="email"
+                component="div"
+              />
+            </div>
 
-          <PasswordStrengthBar
-            password={values.password}
-            onChangeScore={() => {}}
-            barColors={{
-              0: '#ff4d4d',
-              1: '#ff8000',
-              2: '#ffff00',
-              3: '#99cc00',
-              4: '#00cc00',
-            }}
-            style={{ marginBottom: '1rem' }}
-            scoreWords={[
-              'Недостатньо',
-              'Слабкий',
-              'Помірний',
-              'Добрий',
-              'Відмінний',
-            ]}
-          />
+            <div className={css.inputIconWrap}>
+              <div className={css.inputGroup}>
+                <FaLock className={css.icon} />
+                <Field
+                  className={css.registerInput}
+                  type="password"
+                  name="password"
+                  id={passwordId}
+                  placeholder="Password"
+                />
+              </div>
+              <ErrorMessage
+                className={css.registerErrorMessage}
+                name="password"
+                component="div"
+              />
+            </div>
 
-          <button
-            className={css.registerButton}
-            type="submit"
-            disabled={isSubmitting}
-          >
-            Register
-          </button>
-        </Form>
+            <div className={css.inputIconWrap}>
+              <div className={css.inputGroup}>
+                {' '}
+                <FaLock className={css.icon} />
+                <Field
+                  className={css.registerInput}
+                  type="password"
+                  name="confirmPassword"
+                  id={confirmPasswordId}
+                  placeholder="Confirm Password"
+                />
+              </div>
+              <ErrorMessage
+                className={css.registerErrorMessage}
+                name="confirmPassword"
+                component="div"
+              />
+            </div>
+
+            {touched.confirmPassword && values.confirmPassword && (
+              <PasswordStrengthBar
+                password={values.confirmPassword}
+                minLength={8}
+                barColors={[
+                  '#ff4d4d',
+                  '#ff8000',
+                  '#ffff00',
+                  '#99cc00',
+                  '#00cc00',
+                ]}
+                scoreWords={
+                  values.confirmPassword !== values.password
+                    ? [
+                        'Does not match',
+                        'Still wrong',
+                        'Mismatch',
+                        'Almost',
+                        'Match',
+                      ]
+                    : ['Weak', 'Fair', 'Good', 'Strong', 'Perfect']
+                }
+                shortScoreWord="Too short"
+                style={{ marginBottom: '1rem' }}
+              />
+            )}
+            <div className={css.buttonGroup}>
+              <button
+                className={css.registerButton}
+                type="submit"
+                disabled={isSubmitting}
+              >
+                Register
+              </button>
+              <button
+                type="button"
+                className={css.loginButton}
+                // onClick={() => navigate('/login')}
+              >
+                Login
+              </button>
+            </div>
+          </Form>
+        </div>
       )}
     </Formik>
   );

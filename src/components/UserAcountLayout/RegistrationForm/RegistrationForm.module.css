@@ -1,87 +1,165 @@
-:root {
-  --deep-dark: #2a2a2a;
-}
+.registerOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
 
-/* Базові стилі */
-.registerContact {
-  margin: auto;
-  border: 2px solid var(--deep-dark);
-  border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 40px;
-  background-color: white;
-  width: 100%;
-  max-width: 400px;
-}
-
-/* Адаптація під мобільні */
-@media (max-width: 767px) {
-  .registerContact {
-    padding: 16px;
-    max-width: 90%;
-  }
-
-  .registerInput {
-    font-size: 14px;
-    padding: 8px 10px;
-    width: 100%;
-  }
-
-  .registerButton {
-    font-size: 14px;
-    padding: 10px;
-  }
-}
-
-/* Адаптація під планшети */
-@media (min-width: 768px) and (max-width: 1279px) {
-  .registerContact {
-    padding: 24px;
-    max-width: 500px;
-  }
-}
-
-/* Адаптація під десктоп */
-@media (min-width: 1280px) {
-  .registerContact {
-    padding: 32px;
-    max-width: 600px;
-  }
-}
-
-.registerLabel {
-  text-align: start;
-  display: block;
-  margin-bottom: 8px;
-}
-
-.registerInputWrap {
-  position: relative;
-}
-
-.registerInput {
-  border-style: none;
-  border-radius: 8px;
-  padding-block: 8px;
-  padding-inline: 12px;
-  width: 100%;
-  margin-bottom: 30px;
-}
-
-.registerErrorMessage {
-  position: absolute;
-  top: 32px;
-  left: 8px;
-  color: rgb(226, 93, 40);
-}
-
-.registerButton {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 8px;
+
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 9999;
+}
+
+.registerContact {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  /* gap: 16px; */
+  border-radius: 8px;
+  padding: 16px;
+  padding-bottom: 37px;
+  width: 90%;
+  max-width: 533px;
+  height: auto;
+  background: #508f8c;
   margin: auto;
-  width: 100%;
-  padding: 0.75rem;
+}
+
+.registerLogo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.logo {
+  width: 120px;
+  height: auto;
+}
+
+.inputIconWrap {
+  position: relative;
+  margin-bottom: 1.25rem;
+}
+
+.inputGroup {
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+  border: 1px solid #191b1c;
+  border-radius: 8px;
+  background: transparent;
+}
+
+.icon {
+  color: #081222;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+
+.registerInput {
+  border: none;
+  outline: none;
+  background: transparent;
   font-size: 16px;
+  font-weight: 500;
+  width: 100%;
+  padding: 10px 0;
+}
+
+.registerInput::placeholder {
+  color: #081222;
+}
+
+.registerErrorMessage {
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.buttonGroup {
+  /* margin-top: 1.5rem; */
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.registerButton {
+  width: 100%;
+  height: 44px;
+  padding: 11px 79px;
+  background-color: #0077ff;
+  font-weight: 500;
+  font-size: 18px;
+  text-align: center;
+  color: #fcfcfc;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #355359 0%, #3b5d63 100%);
+}
+
+.registerButton:disabled {
+  background-color: #fcfcfc;
+  cursor: not-allowed;
+}
+
+.loginButton {
+  width: 100%;
+  background-color: transparent;
+  font-weight: 500;
+  font-size: 18px;
+  text-align: center;
+  color: #081222;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid #081222;
+  padding: 11px 68px;
+}
+
+@media (min-width: 768px) {
+  .registerContact {
+    width: 533px;
+    padding: 55px 32px 69px 50px;
+    border-radius: 16px;
+  }
+
+  .inputIconWrap {
+    position: relative;
+    margin-bottom: 1.25rem;
+    width: 409px;
+  }
+
+  .buttonGroup {
+    width: 409px;
+    margin-top: 56px;
+  }
+
+  .logo {
+    width: 182px;
+    margin-bottom: 32px;
+  }
+
+  .inputIconWrap:not(:last-of-type) {
+    margin-bottom: 1.25rem;
+  }
+
+  .inputIconWrap:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+@media (min-width: 1280px) {
 }
