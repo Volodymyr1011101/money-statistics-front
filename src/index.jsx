@@ -1,21 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { Toaster } from "react-hot-toast";
 import "modern-normalize";
 import "./index.css";
 import App from "./App";
 import { Provider } from "react-redux";
-import { store } from "./redux/store";
-import { RouterProvider } from "react-router-dom";
-import { router } from "./router/router";
+import { persistor, store } from "./redux/store.js";
+import { PersistGate } from "redux-persist/integration/react";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <RouterProvider router={router}>
+      <PersistGate loading={null} persistor={persistor}>
         <App />
-      </RouterProvider>
+      </PersistGate>
     </Provider>
+    <Toaster position="top-right" toastOptions={{ duration: 3000 }} />
   </React.StrictMode>
 );
 
