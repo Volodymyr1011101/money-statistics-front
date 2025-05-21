@@ -1,13 +1,16 @@
-import { createBrowserRouter } from 'react-router';
-import Home from '../pages/Home';
-import Layout from '../components/UserAcountLayout/Layout/Layout';
-import CurrencyPage from '../pages/CurrencyPage';
-import RegistrationPage from '../pages/RegistrationPage';
+import { createBrowserRouter } from "react-router";
+
 import { lazy } from "react";
 import RestrictedRoute from "./RestrictedRoute";
 import PrivateRoute from "./PrivateRoute";
 
+const CurrencyPage = lazy(() => import("../pages/CurrencyPage"));
+const Layout = lazy(() =>
+  import("../components/UserAcountLayout/Layout/Layout")
+);
+const Home = lazy(() => import("../pages/Home"));
 const LoginPage = lazy(() => import("../pages/LoginPage/LoginPage"));
+const RegistrationPage = lazy(() => import("../pages/RegistrationPage"));
 
 // export const router = createBrowserRouter([
 //     {
@@ -33,10 +36,6 @@ export const router = createBrowserRouter([
         path: "currency",
         element: <CurrencyPage />,
       },
-      {
-        path: 'register',
-        element: <RegistrationPage />,
-      },
     ],
   },
   {
@@ -47,5 +46,9 @@ export const router = createBrowserRouter([
         <LoginPage />
       </RestrictedRoute>
     ),
+  },
+  {
+    path: "/register",
+    element: <LoginPage isRegister={true} />,
   },
 ]);

@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Modal from '../Modal/Modal';
 import { logOut } from '../../../redux/auth/operations';
 import { useDispatch } from 'react-redux';
+import toast from "react-hot-toast";
 
 const BtnExit = () => {
 
