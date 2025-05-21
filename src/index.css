@@ -78,3 +78,6 @@ img {
 .no-scroll {
   overflow: hidden;
 }
+.App {
+  overflow: hidden;
+}

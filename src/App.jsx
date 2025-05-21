@@ -12,6 +12,7 @@ function App() {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
 
+
   useEffect(() => {
     dispatch(refreshUserThunk());
   }, [dispatch]);
@@ -20,7 +21,7 @@ function App() {
     // TODO: add PageLoader
     <Suspense fallback={<p>Loading .......</p>}>
       <div className="App">
-        <RouterProvider router={router} />;
+        <RouterProvider router={router} />
       </div>
     </Suspense>
   );
