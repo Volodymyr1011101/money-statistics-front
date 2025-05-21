@@ -11,10 +11,6 @@ const setAuthHeader = (token) => {
   api.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
-const clearAuthHeader = () => {
-  api.defaults.headers.common.Authorization = "";
-};
-
 export const loginThunk = createAsyncThunk(
   "auth/login",
   async (body, thunkAPI) => {
@@ -52,6 +48,12 @@ export const refreshUserThunk = createAsyncThunk(
   }
 );
 
+axios.defaults.baseURL = "https://connections-api.goit.global";
+
+const clearAuthHeader = () => {
+  axios.defaults.headers.common.Authorization = "";
+};
+
 export const register = createAsyncThunk(
   "auth/register",
   async (userData, { rejectWithValue }) => {
@@ -75,11 +77,12 @@ export const register = createAsyncThunk(
 
 export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
   try {
-    const response = await api.post("/users/logout");
+    const response = await api.post("/auth/logout");
     clearAuthHeader();
+    return;
 
-    return response.data;
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+    return thunkAPI.rejectWithValue(
+      error.response?.data?.message || error.message);
   }
 });
