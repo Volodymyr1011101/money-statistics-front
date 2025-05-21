@@ -40,7 +40,7 @@ const initialValues = {
   password: "",
 };
 
-const LoginForm = () => {
+const LoginForm = ({handleFlip}) => {
   const dispatch = useDispatch();
 
   const handleSubmit = async (values, actions) => {
@@ -117,12 +117,9 @@ const LoginForm = () => {
           >
             Log in
           </Button>
-          <NavLink to="/register" className={css.loginLink}>
-            <Button className={css.registerButton} disabled={isSubmitting}>
+            <Button className={css.registerButton} disabled={isSubmitting} onClick={handleFlip}>
               Register
             </Button>
-          </NavLink>
-
           <img className={css.pocketImg} src={Img} />
         </Form>
       )}

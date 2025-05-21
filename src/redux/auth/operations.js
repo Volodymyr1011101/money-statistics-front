@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import iziToast from "izitoast";
+import toast from "react-hot-toast";
 
 export const api = axios.create({
   // TODO: set real backend url
@@ -57,8 +58,9 @@ const clearAuthHeader = () => {
 export const register = createAsyncThunk(
     "auth/register",
     async (userData, { rejectWithValue }) => {
+        const {email, name, password} = userData;
         try {
-            const response = await axios.post("/api/register", userData);
+            const response = await axios.post("https://money-statistics-back-1.onrender.com/auth/register", {name, email, password});
             return response.data;
         } catch (error) {
             const message =

@@ -21,7 +21,7 @@ function App() {
     // TODO: add PageLoader
     <Suspense fallback={<p>Loading .......</p>}>
       <div className="App">
-        <RouterProvider router={router} />;
+        <RouterProvider router={router} />
       </div>
     </Suspense>
   );

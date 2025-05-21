@@ -10,6 +10,7 @@ import { register } from '../../../redux/auth/operations';
 import Logo from '../../../UI/Logo/Logo';
 import logo from '../../../assets/Logo.svg';
 import css from './RegistrationForm.module.css';
+import logo_modal from "../../../assets/Logo_modal.svg";
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
@@ -37,7 +38,7 @@ const initialValues = {
   confirmPassword: '',
 };
 
-const RegistrationForm = () => {
+const RegistrationForm = ({handleFlip}) => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
 
   const dispatch = useDispatch();
@@ -62,7 +63,8 @@ const RegistrationForm = () => {
         <div className={css.registerOverlay}>
           <Form className={css.registerContact}>
             <div className={css.registerLogo}>
-              <Logo img={logo} className={css.logo} />
+              <Logo img={logo_modal} className={css.logo} />
+
             </div>
 
             <div className={css.inputIconWrap}>
@@ -175,7 +177,7 @@ const RegistrationForm = () => {
               <button
                 type="button"
                 className={css.loginButton}
-                // onClick={() => navigate('/login')}
+                onClick={handleFlip}
               >
                 Login
               </button>
