@@ -4,19 +4,22 @@ import iziToast from "izitoast";
 import toast from "react-hot-toast";
 
 export const api = axios.create({
-  // TODO: set real backend url
-  baseURL: "http://localhost:3000",
+  baseURL: "https://money-statistics-back-1.onrender.com",
 });
 
 const setAuthHeader = (token) => {
   api.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
+const clearAuthHeader = () => {
+  api.defaults.headers.common.Authorization = "";
+};
+
 export const loginThunk = createAsyncThunk(
   "auth/login",
   async (body, thunkAPI) => {
     try {
-      const { data } = await api.post("https://money-statistics-back-1.onrender.com/auth/login", body);
+      const { data } = await api.post("/auth/login", body);
       setAuthHeader(data.accessToken);
       return data;
     } catch (error) {
@@ -49,46 +52,30 @@ export const refreshUserThunk = createAsyncThunk(
   }
 );
 
-axios.defaults.baseURL = "https://connections-api.goit.global";
-
-const clearAuthHeader = () => {
-  axios.defaults.headers.common.Authorization = "";
-};
-
 export const register = createAsyncThunk(
-    "auth/register",
-    async (userData, { rejectWithValue }) => {
-        const {email, name, password} = userData;
-        try {
-            const response = await axios.post("https://money-statistics-back-1.onrender.com/auth/register", {name, email, password});
-            return response.data;
-        } catch (error) {
-            const message =
-                error.response?.data?.message ||
-                "Sorry, something went wrong during registration. Please try again or contact support";
-            toast.error(message);
-            return rejectWithValue(message);
-        }
-    }
-);
-export const login = createAsyncThunk(
-  'auth/login',
-  async (loginData, thunkAPI) => {
+  "auth/register",
+  async (userData, { rejectWithValue }) => {
+    const { email, name, password } = userData;
     try {
-      const response = await axios.post('/users/login', loginData);
-      setAuthHeader(response.data.token);
-
+      const response = await api.post("/auth/register", {
+        name,
+        email,
+        password,
+      });
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      const message =
+        error.response?.data?.message ||
+        "Sorry, something went wrong during registration. Please try again or contact support";
+      toast.error(message);
+      return rejectWithValue(message);
     }
   }
 );
 
-export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
-  //   console.log('thunkAPI: ', thunkAPI);
+export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
   try {
-    const response = await axios.post('/users/logout');
+    const response = await api.post("/users/logout");
     clearAuthHeader();
 
     return response.data;
@@ -96,33 +83,3 @@ export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
     return thunkAPI.rejectWithValue(error.message);
   }
 });
-
-export const refreshUser = createAsyncThunk(
-  'auth/refresh',
-  async (_, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const persistedToken = state.auth.token;
-
-    if (persistedToken === null) {
-      return thunkAPI.rejectWithValue('Unable to fetch user');
-    }
-
-    try {
-      setAuthHeader(persistedToken);
-      const response = await axios.get('/users/current');
-      //   console.log('response: ', response);
-
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  },
-  {
-    condition: (_, { getState }) => {
-      const { auth } = getState();
-      if (!auth.token) {
-        return false;
-      }
-    },
-  }
-);

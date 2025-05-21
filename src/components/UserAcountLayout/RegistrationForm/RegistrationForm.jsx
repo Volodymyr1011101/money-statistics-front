@@ -1,45 +1,46 @@
-import { ErrorMessage, Field, Form, Formik } from 'formik';
-import * as Yup from 'yup';
-import { useDispatch } from 'react-redux';
-import { useId } from 'react';
-import PasswordStrengthBar from 'react-password-strength-bar';
-import { useMediaQuery } from 'react-responsive';
-import { FaUser, FaEnvelope, FaLock } from 'react-icons/fa';
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import * as Yup from "yup";
+import { useDispatch } from "react-redux";
+import { useId } from "react";
+import PasswordStrengthBar from "react-password-strength-bar";
+import { useMediaQuery } from "react-responsive";
+import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
 
-import { register } from '../../../redux/auth/operations';
-import Logo from '../../../UI/Logo/Logo';
-import logo from '../../../assets/Logo.svg';
-import css from './RegistrationForm.module.css';
+import { register } from "../../../redux/auth/operations";
+import Logo from "../../../UI/Logo/Logo";
+import logo from "../../../assets/Logo.svg";
+import css from "./RegistrationForm.module.css";
 import logo_modal from "../../../assets/Logo_modal.svg";
+import { passwordRegex } from "../../../helpers/constants";
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 const validation = Yup.object().shape({
-  name: Yup.string().required('Required field'),
+  name: Yup.string().required("Required field"),
   email: Yup.string()
-    .required('Required field')
-    .matches(emailRegex, 'Invalid email format'),
+    .required("Required field")
+    .matches(emailRegex, "Invalid email format"),
   password: Yup.string()
-    .required('Required field')
-    .min(8, 'Password must contain at least 8 characters')
+    .required("Required field")
+    .min(8, "Password must contain at least 8 characters")
     .matches(
-      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/,
-      'Password must contain at least one number, one uppercase letter, and one lowercase letter'
+      passwordRegex,
+      "Password must contain at least one number, one uppercase letter, and one lowercase letter"
     ),
   confirmPassword: Yup.string()
-    .oneOf([Yup.ref('password'), null], 'Passwords do not match')
-    .required('Required field'),
+    .oneOf([Yup.ref("password"), null], "Passwords do not match")
+    .required("Required field"),
 });
 
 const initialValues = {
-  name: '',
-  email: '',
-  password: '',
-  confirmPassword: '',
+  name: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
 };
 
-const RegistrationForm = ({handleFlip}) => {
-  const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
+const RegistrationForm = ({ handleFlip }) => {
+  const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
 
   const dispatch = useDispatch();
   const nameId = useId();
@@ -64,7 +65,6 @@ const RegistrationForm = ({handleFlip}) => {
           <Form className={css.registerContact}>
             <div className={css.registerLogo}>
               <Logo img={logo_modal} className={css.logo} />
-
             </div>
 
             <div className={css.inputIconWrap}>
@@ -123,7 +123,7 @@ const RegistrationForm = ({handleFlip}) => {
 
             <div className={css.inputIconWrap}>
               <div className={css.inputGroup}>
-                {' '}
+                {" "}
                 <FaLock className={css.icon} />
                 <Field
                   className={css.registerInput}
@@ -145,25 +145,25 @@ const RegistrationForm = ({handleFlip}) => {
                 password={values.confirmPassword}
                 minLength={8}
                 barColors={[
-                  '#ff4d4d',
-                  '#ff8000',
-                  '#ffff00',
-                  '#99cc00',
-                  '#00cc00',
+                  "#ff4d4d",
+                  "#ff8000",
+                  "#ffff00",
+                  "#99cc00",
+                  "#00cc00",
                 ]}
                 scoreWords={
                   values.confirmPassword !== values.password
                     ? [
-                        'Does not match',
-                        'Still wrong',
-                        'Mismatch',
-                        'Almost',
-                        'Match',
+                        "Does not match",
+                        "Still wrong",
+                        "Mismatch",
+                        "Almost",
+                        "Match",
                       ]
-                    : ['Weak', 'Fair', 'Good', 'Strong', 'Perfect']
+                    : ["Weak", "Fair", "Good", "Strong", "Perfect"]
                 }
                 shortScoreWord="Too short"
-                style={{ marginBottom: '1rem' }}
+                style={{ marginBottom: "1rem" }}
               />
             )}
             <div className={css.buttonGroup}>
