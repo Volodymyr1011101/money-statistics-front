@@ -10,7 +10,6 @@ const Layout = lazy(() =>
 );
 const Home = lazy(() => import("../pages/Home"));
 const LoginPage = lazy(() => import("../pages/LoginPage/LoginPage"));
-const RegistrationPage = lazy(() => import("../pages/RegistrationPage"));
 
 // export const router = createBrowserRouter([
 //     {

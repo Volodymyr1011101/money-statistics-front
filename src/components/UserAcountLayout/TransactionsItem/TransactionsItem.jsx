@@ -7,7 +7,6 @@ function TransactionsItem({ id, date, type, category, comment, sum }) {
 
   const isIncome = type === 'income';
   const isMobile = useMediaQuery({ query: '(max-width:768px)' });
-  console.log(isMobile);
 
   return (
     <div className={s.container}>

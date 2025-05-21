@@ -80,4 +80,5 @@ img {
 }
 .App {
   overflow: hidden;
+  position: relative;
 }
