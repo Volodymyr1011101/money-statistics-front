@@ -131,8 +131,9 @@
         border-radius: 16px;
     }
 
-    .container:nth-child(odd):not(:first-child) {
-        background-color: #1e2a38;
+    .container:nth-child(2n + 2) {
+        background: #294045;
+        background: linear-gradient(180deg, #294045 0%, #1e2f33 100%);
     }
 
     .type {

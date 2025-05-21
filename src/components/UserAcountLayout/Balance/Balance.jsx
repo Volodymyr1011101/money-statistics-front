@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux'
 
 const Balance = () => {
   const user = useSelector(selectUser);
-  console.log(user); 
 
   return (
     <div className={s.balance_wrapper}>

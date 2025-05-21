@@ -3,7 +3,6 @@ import TransactionsList from '../components/UserAcountLayout/TransactionsList/Tr
 const Home = () => {
   return (
     <>
-      <h1>Home</h1>
       <TransactionsList />
     </>
   );
