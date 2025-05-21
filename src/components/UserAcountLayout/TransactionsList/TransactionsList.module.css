@@ -51,7 +51,7 @@
 }
 
 .fab:hover {
-    background-color: blue;
+    background-color: #1e2a38;
 }
 
 
@@ -61,42 +61,11 @@
 
     .container {
         height: 538px;
+        width: 704px;
         overflow-y: auto;
         overflow-x: hidden;
         background-color: #3B5D63;
         border-radius: 16px;
-    }
-
-    /* Для FireFox */
-    .container {
-        /* scrollbar-width: thin;
-        scrollbar-color: #ccc #222; */
-        position: relative;
-    }
-
-    /* Для Chrome, Edge, Safari */
-    .container::-webkit-scrollbar {
-        width: 2px;
-    }
-
-    .container::-webkit-scrollbar-track {
-        background: #222;
-        border-radius: 4px;
-    }
-
-    .container::-webkit-scrollbar-button {
-        display: none;
-    }
-
-    .container::-webkit-scrollbar-thumb {
-        background-color: #ccc;
-        border-radius: 4px;
-        margin: 0 auto;
-        height: 70%;
-    }
-
-    .container::-webkit-scrollbar-thumb:hover {
-        background-color: #aaa;
     }
 
 
@@ -123,7 +92,7 @@
         width: 64px;
         height: 64px;
         bottom: 3.5rem;
-        right: 5%;
+        right: calc(50% - 352px);
 
     }
 
