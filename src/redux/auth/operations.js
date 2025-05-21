@@ -86,14 +86,16 @@ export const login = createAsyncThunk(
 );
 
 export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
-  //   console.log('thunkAPI: ', thunkAPI);
   try {
-    const response = await axios.post('/users/logout');
+    // const response = await axios.post('/users/logout');
+    // return response.data;
+    await axios.post('https://money-statistics-back-1.onrender.com/auth/logout');
     clearAuthHeader();
-
-    return response.data;
+    return;
+  
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+    return thunkAPI.rejectWithValue(
+      error.response?.data?.message || error.message);
   }
 });
 
