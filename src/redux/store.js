@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import { autReducer } from "./auth/slice";
+import { authReducer } from "./auth/slice";
 
 import {
   persistStore,
@@ -21,7 +21,7 @@ const persistConfig = {
   whitelist: ["token"],
 };
 
-const persistedReducer = persistReducer(persistConfig, autReducer);
+const persistedReducer = persistReducer(persistConfig, authReducer);
 
 export const store = configureStore({
   reducer: {

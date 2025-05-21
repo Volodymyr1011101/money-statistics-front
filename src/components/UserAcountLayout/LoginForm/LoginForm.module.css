@@ -1,7 +1,6 @@
 .loginContact {
   position: relative;
-  width: 320px;
-  margin: 20px auto;
+  margin: 0 auto;
   border-radius: 16px;
   padding: 16px;
   background-color: #508f8c;
@@ -9,10 +8,11 @@
   justify-content: flex-start;
   flex-direction: column;
   gap: 16px;
+  top: 50%;
+  transform: translateY(-50%);
 
   @media screen and (min-width: 768px) {
     width: 533px;
-    margin-top: 176px;
     padding-left: 62px;
     padding-right: 62px;
     padding-top: 53px;
@@ -20,9 +20,6 @@
     gap: 24px;
   }
 
-  @media screen and (min-width: 1440px) {
-    margin-top: 75px;
-  }
 }
 
 .loginInputWrap {
@@ -109,6 +106,8 @@
 }
 
 .loginButton {
+  background-color: #355359;
+  color: #fff;
   @media screen and (min-width: 768px) {
     margin-top: 8px;
   }
@@ -124,10 +123,7 @@
   align-self: flex-end;
 
   @media screen and (min-width: 768px) {
-    position: absolute;
-    bottom: -271px;
-    right: -110px;
-    width: 320px;
+    display: none;
   }
 }
 
