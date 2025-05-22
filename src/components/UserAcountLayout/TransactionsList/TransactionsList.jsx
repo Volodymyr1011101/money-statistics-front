@@ -12,9 +12,12 @@ import {
   ClickScrollPlugin,
 } from 'overlayscrollbars';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import ModalAddTransaction from '../../ModalAddTransaction/ModalAddTransaction';
 
 function TransactionsList() {
+  const [showModalAddTransaction, setShowModalAddTransaction] = useState(false);
+
   //   const transactions = useSelector(selectTransactions);
 
   const scrollRef = useRef(null);
@@ -237,9 +240,14 @@ function TransactionsList() {
             )}
           </div>
           <div className={s.fabContainer}>
-            <button className={s.fab}>+</button>
+            <button className={s.fab} onClick={() => setShowModalAddTransaction(true)}>+</button>
           </div>
-        </div>
+      </div>
+      {showModalAddTransaction && (
+            <ModalAddTransaction
+              onClose={() => setShowModalAddTransaction(false)}
+            />
+          )}
       </div>
   );
 }
