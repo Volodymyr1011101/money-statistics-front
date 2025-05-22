@@ -181,7 +181,6 @@ const RegistrationForm = ({ handleFlip }) => {
               style={{ marginBottom: "1rem" }}
             />
           )}
-          {/* <div className={css.buttonGroup}> */}
           <button
             className={css.registerButton}
             type="submit"
@@ -196,7 +195,6 @@ const RegistrationForm = ({ handleFlip }) => {
           >
             Login
           </button>
-          {/* </div> */}
         </Form>
       )}
     </Formik>

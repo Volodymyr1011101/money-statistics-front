@@ -76,13 +76,6 @@
   border-color: #0b6016;
   color: #0b6016;
 }
-/* 
-.buttonGroup {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  width: 100%;
-} */
 
 .loginButton,
 .registerButton {
@@ -148,10 +141,6 @@
     padding-bottom: 82px;
     gap: 24px;
   }
-
-  /* .registerInputWrap {
-    width: 256px;
-  } */
 
   .logo {
     width: 182px;
