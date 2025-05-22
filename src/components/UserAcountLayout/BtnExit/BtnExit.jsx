@@ -3,16 +3,31 @@ import s from '../BtnExit/BtnExit.module.css'
 import { RxExit } from "react-icons/rx";
 import { useNavigate } from 'react-router-dom';
 import Modal from '../Modal/Modal';
+import { logOut } from '../../../redux/auth/operations';
+import { useDispatch } from 'react-redux';
+import toast from "react-hot-toast";
 
 const BtnExit = () => {
 
   const [showModal, setShowModal] = useState(false);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    //реализовать логику через redux
+  const handleLogout = async () => {
     setShowModal(false);
-    navigate('/login'); 
+
+    try {
+      const resultAction = await dispatch(logOut());
+
+      if (logOut.rejected.match(resultAction)) {
+        toast.error(resultAction.payload || 'Logout failed');
+      }
+    } catch (error) { 
+      toast.error('Something went wrong');
+    } finally {
+      localStorage.clear();
+      navigate('/login');
+    }
   };
     
   

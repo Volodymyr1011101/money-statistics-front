@@ -1,10 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import iziToast from "izitoast";
+import toast from "react-hot-toast";
 
 export const api = axios.create({
-  // TODO: set real backend url
-  baseURL: "http://localhost:3000",
+  baseURL: "https://money-statistics-back-1.onrender.com",
 });
 
 const setAuthHeader = (token) => {
@@ -31,7 +31,7 @@ export const loginThunk = createAsyncThunk(
   "auth/login",
   async (body, thunkAPI) => {
     try {
-      const { data } = await api.post("https://money-statistics-back-1.onrender.com/auth/login", body);
+      const { data } = await api.post("/auth/login", body);
       setAuthHeader(data.accessToken);
       return data;
     } catch (error) {
@@ -66,5 +66,35 @@ export const refreshUserThunk = createAsyncThunk(
 
 
 
+export const register = createAsyncThunk(
+  "auth/register",
+  async (userData, { rejectWithValue }) => {
+    const { email, name, password } = userData;
+    try {
+      const response = await api.post("/auth/register", {
+        name,
+        email,
+        password,
+      });
+      return response.data;
+    } catch (error) {
+      const message =
+        error.response?.data?.message ||
+        "Sorry, something went wrong during registration. Please try again or contact support";
+      toast.error(message);
+      return rejectWithValue(message);
+    }
+  }
+);
 
+export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
+  try {
+    const response = await api.post("/auth/logout");
+    clearAuthHeader();
+    return;
 
+  } catch (error) {
+    return thunkAPI.rejectWithValue(
+      error.response?.data?.message || error.message);
+  }
+});

@@ -1,17 +1,15 @@
 import React from 'react'
 import s from '../Balance/Balance.module.css'
+import { selectUser } from '../../../redux/auth/selectors.js'
+import { useSelector } from 'react-redux'
 
 const Balance = () => {
-
-  const getBalance = () => {
-
-    return ("Balance")
-  } //получение баланса из store
+  const user = useSelector(selectUser);
 
   return (
     <div className={s.balance_wrapper}>
       <h2 className={s.balance_title}>YOU BALANCE</h2>
-      <p className={s.balance_sum}>{getBalance()} UAH</p>
+      {/* <p className={s.balance_sum}>{user.balance} UAH</p> */}
     </div>
   )
 }

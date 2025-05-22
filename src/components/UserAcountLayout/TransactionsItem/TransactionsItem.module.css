@@ -91,10 +91,10 @@
         height: 48px;
         min-height: 48px;
         box-sizing: border-box;
-
         font-size: 14px;
         font-weight: 400;
         margin: 0;
+        /* margin-bottom: 1rem; */
 
     }
 
@@ -131,8 +131,9 @@
         border-radius: 16px;
     }
 
-    .container:nth-child(odd):not(:first-child) {
-        background-color: #1e2a38;
+    .container:nth-child(2n + 2) {
+        background: #294045;
+        background: linear-gradient(180deg, #294045 0%, #1e2f33 100%);
     }
 
     .type {
@@ -141,8 +142,8 @@
 
     .editButton {
         text-align: left;
-        padding-left: 0;
-        padding-right: 1rem;
+        padding: 4px 2px;
+        margin-right: 1rem;
     }
 
     .comment {
