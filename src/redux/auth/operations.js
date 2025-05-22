@@ -11,21 +11,21 @@ const setAuthHeader = (token) => {
   api.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
-export const register = createAsyncThunk(
-  "auth/register",
-  async (userData, { rejectWithValue }) => {
-    try {
-      const response = await axios.post("/api/register", userData);
-      return response.data;
-    } catch (error) {
-      const message =
-        error.response?.data?.message ||
-        "Sorry, something went wrong during registration. Please try again or contact support";
-      toast.error(message);
-      return rejectWithValue(message);
-    }
-  }
-);
+// export const register = createAsyncThunk(
+//   "auth/register",
+//   async (userData, { rejectWithValue }) => {
+//     try {
+//       const response = await axios.post("/api/register", userData);
+//       return response.data;
+//     } catch (error) {
+//       const message =
+//         error.response?.data?.message ||
+//         "Sorry, something went wrong during registration. Please try again or contact support";
+//       toast.error(message);
+//       return rejectWithValue(message);
+//     }
+//   }
+// );
 
 export const loginThunk = createAsyncThunk(
   "auth/login",
