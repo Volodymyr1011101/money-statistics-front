@@ -4,6 +4,7 @@ import s from './TransactionsList.module.css';
 
 import { useEffect, useRef, useState } from 'react';
 import ModalAddTransaction from '../../ModalAddTransaction/ModalAddTransaction';
+import ModalEditTransaction from '../../ModalEditTransaction/ModalEditTransaction';
 
 function TransactionsList() {
   const [showModalAddTransaction, setShowModalAddTransaction] = useState(false);
@@ -174,47 +175,57 @@ function TransactionsList() {
       sum: 25,
     },
   ];
+ const handleEditClick = (transaction) => {
+    setSelectedTransaction(transaction);
+    setShowModalEditTransaction(true);
+  };
 
   return (
-      <div className={s.wrapper}>
-        <div className={s.transactionContainer}>
-          <div className={s.tableHeader}>
-            <p>Date</p>
-            <p className={s.type}>Type</p>
-            <p>Category</p>
-            <p>Comment</p>
-            <p>Sum</p>
-          </div>
-          <div className={`${s.container} ${s[`scroll-container`]}`} ref={scrollRef}>
-            {transactions.length === 0 ? (
-                <p className={s.stub}>There are no transactions yet</p>
-            ) : (
-                <>
-
-                  {transactions.map((item, index) => (
-                      <TransactionsItem
-                          key={item.id + item.sum + index}
-                          id={item.id}
-                          date={item.date}
-                          type={item.type}
-                          category={item.category}
-                          comment={item.comment}
-                          sum={item.sum}
-                      />
-                  ))}
-                </>
-            )}
-          </div>
-          <div className={s.fabContainer}>
-            <button className={s.fab} onClick={() => setShowModalAddTransaction(true)}>+</button>
-          </div>
-      </div>
-      {showModalAddTransaction && (
-            <ModalAddTransaction
-              onClose={() => setShowModalAddTransaction(false)}
-            />
+    <div className={s.wrapper}>
+      <div className={s.transactionContainer}>
+        <div className={s.tableHeader}>
+          <p>Date</p>
+          <p className={s.type}>Type</p>
+          <p>Category</p>
+          <p>Comment</p>
+          <p>Sum</p>
+        </div>
+        <div className={`${s.container} ${s[`scroll-container`]}`} ref={scrollRef}>
+          {transactions.length === 0 ? (
+            <p className={s.stub}>There are no transactions yet</p>
+          ) : (
+            <>
+              {transactions.map((item, index) => (
+                <TransactionsItem
+                  key={item.id + item.sum + index}
+                  id={item.id}
+                  date={item.date}
+                  type={item.type}
+                  category={item.category}
+                  comment={item.comment}
+                  sum={item.sum}
+                  onEdit={() => handleEditClick(item)}
+                />
+              ))}
+            </>
           )}
+        </div>
+        <div className={s.fabContainer}>
+          <button className={s.fab} onClick={() => setShowModalAddTransaction(true)}>+</button>
+        </div>
       </div>
+      
+      {showModalAddTransaction && (
+        <ModalAddTransaction onClose={() => setShowModalAddTransaction(false)} />
+      )}
+      
+      {showModalEditTransaction && selectedTransaction && (
+        <ModalEditTransaction 
+          onClose={() => setShowModalEditTransaction(false)} 
+          transaction={selectedTransaction} 
+        />
+      )}
+    </div>
   );
 }
 
