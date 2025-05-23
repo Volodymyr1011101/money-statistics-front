@@ -5,6 +5,7 @@ import { useId } from "react";
 import PasswordStrengthBar from "react-password-strength-bar";
 import clsx from "clsx";
 import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
+import toast from "react-hot-toast";
 
 import { register } from "../../../redux/auth/operations";
 import Logo from "../../../UI/Logo/Logo";
@@ -45,9 +46,12 @@ const RegistrationForm = ({ handleFlip }) => {
   const passwordId = useId();
   const confirmPasswordId = useId();
 
-  const handleSubmit = (values, actions) => {
-    dispatch(register(values));
-    actions.setSubmitting(false);
+  const handleSubmit = async (values, actions) => {
+    dispatch(register(values))
+      .unwrap()
+      .catch((error) => {
+        toast.error(error);
+      });
     actions.resetForm();
   };
 
@@ -74,8 +78,8 @@ const RegistrationForm = ({ handleFlip }) => {
             />
             <FaUser
               className={clsx(css.registerIcon, {
-                [css.error]: errors.email && touched.email,
-                [css.success]: touched.email && !errors.email,
+                [css.error]: errors.name && touched.name,
+                [css.success]: touched.name && !errors.name,
               })}
             />
             <ErrorMessage
@@ -112,8 +116,8 @@ const RegistrationForm = ({ handleFlip }) => {
           <div className={css.registerInputWrap}>
             <Field
               className={clsx(css.registerInput, {
-                [css.error]: errors.email && touched.email,
-                [css.success]: touched.email && !errors.email,
+                [css.error]: errors.password && touched.password,
+                [css.success]: touched.password && !errors.password,
               })}
               type="password"
               name="password"
@@ -144,8 +148,9 @@ const RegistrationForm = ({ handleFlip }) => {
             />
             <FaLock
               className={clsx(css.registerIcon, {
-                [css.error]: errors.password && touched.password,
-                [css.success]: touched.password && !errors.password,
+                [css.error]: errors.confirmPassword && touched.confirmPassword,
+                [css.success]:
+                  touched.confirmPassword && !errors.confirmPassword,
               })}
             />
             <ErrorMessage

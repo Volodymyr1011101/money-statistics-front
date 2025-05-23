@@ -11,21 +11,9 @@ const setAuthHeader = (token) => {
   api.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
-// export const register = createAsyncThunk(
-//   "auth/register",
-//   async (userData, { rejectWithValue }) => {
-//     try {
-//       const response = await axios.post("/api/register", userData);
-//       return response.data;
-//     } catch (error) {
-//       const message =
-//         error.response?.data?.message ||
-//         "Sorry, something went wrong during registration. Please try again or contact support";
-//       toast.error(message);
-//       return rejectWithValue(message);
-//     }
-//   }
-// );
+const clearAuthHeader = () => {
+  axios.defaults.headers.common.Authorization = "";
+};
 
 export const loginThunk = createAsyncThunk(
   "auth/login",
@@ -64,8 +52,6 @@ export const refreshUserThunk = createAsyncThunk(
   }
 );
 
-
-
 export const register = createAsyncThunk(
   "auth/register",
   async (userData, { rejectWithValue }) => {
@@ -92,9 +78,9 @@ export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
     const response = await api.post("/auth/logout");
     clearAuthHeader();
     return;
-
   } catch (error) {
     return thunkAPI.rejectWithValue(
-      error.response?.data?.message || error.message);
+      error.response?.data?.message || error.message
+    );
   }
 });
