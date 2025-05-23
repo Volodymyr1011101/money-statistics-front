@@ -1,16 +1,6 @@
-// import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import TransactionsItem from '../TransactionsItem/TransactionsItem';
 import s from './TransactionsList.module.css';
-// import { selectTransactions } from '../../redux/selectors';
-
-import 'overlayscrollbars/styles/overlayscrollbars.css';
-import {
-  OverlayScrollbars,
-  ScrollbarsHidingPlugin,
-  SizeObserverPlugin,
-  ClickScrollPlugin,
-} from 'overlayscrollbars';
 
 import { useEffect, useRef, useState } from 'react';
 import ModalAddTransaction from '../../ModalAddTransaction/ModalAddTransaction';
@@ -184,30 +174,6 @@ function TransactionsList() {
       sum: 25,
     },
   ];
-  const isMobile = useMediaQuery({ query: '(max-width:768px)' });
-
-  // useEffect(() => {
-  //   if (!isMobile && scrollRef.current) {
-  //     OverlayScrollbars.plugin([
-  //       ScrollbarsHidingPlugin,
-  //       SizeObserverPlugin,
-  //       ClickScrollPlugin,
-  //     ]);
-  //     const osInstance = OverlayScrollbars(scrollRef.current, {
-  //       scrollbars: {
-  //         // theme: 'os-theme-custom',
-  //         dragScroll: true,
-  //         clickScroll: true,
-  //         touchSupport: true,
-  //         theme: 'os-theme-light',
-  //       },
-  //     });
-  //
-  //     return () => {
-  //       if (osInstance) osInstance.destroy();
-  //     };
-  //   }
-  // }, [isMobile]);
 
   return (
       <div className={s.wrapper}>
@@ -249,6 +215,7 @@ function TransactionsList() {
             />
           )}
       </div>
+    </div>
   );
 }
 
