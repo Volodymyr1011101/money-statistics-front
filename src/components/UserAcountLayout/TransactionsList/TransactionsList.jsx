@@ -215,7 +215,6 @@ function TransactionsList() {
             />
           )}
       </div>
-    </div>
   );
 }
 
