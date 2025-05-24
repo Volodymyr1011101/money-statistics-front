@@ -4,7 +4,6 @@ import s from './TransactionsList.module.css';
 
 import { useEffect, useRef, useState } from 'react';
 import ModalAddTransaction from '../../ModalAddTransaction/ModalAddTransaction';
-import ModalEditTransaction from '../../ModalEditTransaction/ModalEditTransaction';
 
 function TransactionsList() {
   const [showModalAddTransaction, setShowModalAddTransaction] = useState(false);
