@@ -5,12 +5,13 @@ import s from './TransactionsList.module.css';
 import { useEffect, useRef, useState } from 'react';
 import ModalAddTransaction from '../../ModalAddTransaction/ModalAddTransaction';
 import ModalEditTransaction from '../../ModalEditTransaction/ModalEditTransaction';
+import ButtonAddTransaction from "../ButtonAddTransaction/ButtonAddTransaction";
 
 function TransactionsList() {
   const [showModalAddTransaction, setShowModalAddTransaction] = useState(false);
-
+  const [showModalEditTransaction, setShowModalEditTransaction] = useState(false);
   //   const transactions = useSelector(selectTransactions);
-
+  const [selectedTransaction, setSelectedTransaction] = useState(null);
   const scrollRef = useRef(null);
 
   const transactions = [
@@ -180,6 +181,10 @@ function TransactionsList() {
     setShowModalEditTransaction(true);
   };
 
+ const handleModalStateChange = () => {
+   setShowModalAddTransaction((prev) => !prev );
+ }
+
   return (
     <div className={s.wrapper}>
       <div className={s.transactionContainer}>
@@ -211,20 +216,20 @@ function TransactionsList() {
           )}
         </div>
         <div className={s.fabContainer}>
-          <button className={s.fab} onClick={() => setShowModalAddTransaction(true)}>+</button>
+          <button className={s.fab} onClick={handleModalStateChange}>+</button>
         </div>
       </div>
       
       {showModalAddTransaction && (
-        <ModalAddTransaction onClose={() => setShowModalAddTransaction(false)} />
+        <ModalAddTransaction onClose={handleModalStateChange} />
       )}
       
-      {/*{showModalEditTransaction && selectedTransaction && (*/}
-      {/*  <ModalEditTransaction */}
-      {/*    onClose={() => setShowModalEditTransaction(false)} */}
-      {/*    transaction={selectedTransaction} */}
-      {/*  />*/}
-      {/*)}*/}
+      {showModalEditTransaction && selectedTransaction && (
+        <ModalEditTransaction
+          onClose={() => setShowModalEditTransaction(false)}
+          transaction={selectedTransaction}
+        />
+      )}
     </div>
   );
 }
