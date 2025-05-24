@@ -1,6 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 import { authReducer } from "./auth/slice";
+import transactionsReducer from "./transaction/slice";
+import filtersReducer from "./filter/slice";
 
 import {
   persistStore,
@@ -14,6 +16,8 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
+import loaderReducer from "./loader/loaderSlice";
+
 const persistConfig = {
   key: "auth-data",
   version: 1,
@@ -25,7 +29,10 @@ const persistedReducer = persistReducer(persistConfig, authReducer);
 
 export const store = configureStore({
   reducer: {
+    isLoading: loaderReducer,
     auth: persistedReducer,
+    transactions: transactionsReducer,
+    filters: filtersReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

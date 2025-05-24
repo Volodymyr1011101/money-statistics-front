@@ -9,7 +9,7 @@ const Balance = () => {
   return (
     <div className={s.balance_wrapper}>
       <h2 className={s.balance_title}>YOU BALANCE</h2>
-      {/* <p className={s.balance_sum}>{user.balance} UAH</p> */}
+       <p className={s.balance_sum}>{user.balance} UAH</p>
     </div>
   )
 }
