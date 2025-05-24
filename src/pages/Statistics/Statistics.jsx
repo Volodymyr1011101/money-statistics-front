@@ -1,5 +1,7 @@
 import StatisticsDashboard from "../../components/UserAcountLayout/Statistics/StatisticsDashboard";
 import css from "./Statistics.module.css";
+import FrontToggle from "../../components/UserAcountLayout/FrontToggle/FrontToggle";
+import StatisticsTable from "../../components/UserAcountLayout/StatisticsTable/StatisticsTable";
 
 const Statistics = () => {
   return (

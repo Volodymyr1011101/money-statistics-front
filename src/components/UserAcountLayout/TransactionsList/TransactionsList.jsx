@@ -219,12 +219,12 @@ function TransactionsList() {
         <ModalAddTransaction onClose={() => setShowModalAddTransaction(false)} />
       )}
       
-      {showModalEditTransaction && selectedTransaction && (
-        <ModalEditTransaction 
-          onClose={() => setShowModalEditTransaction(false)} 
-          transaction={selectedTransaction} 
-        />
-      )}
+      {/*{showModalEditTransaction && selectedTransaction && (*/}
+      {/*  <ModalEditTransaction */}
+      {/*    onClose={() => setShowModalEditTransaction(false)} */}
+      {/*    transaction={selectedTransaction} */}
+      {/*  />*/}
+      {/*)}*/}
     </div>
   );
 }
