@@ -1,0 +1,73 @@
+.selectWrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-direction: row;
+  gap: 20px;
+
+  width: 264px;
+}
+
+.select {
+  /* Стили для внешнего контейнера */
+  /* background-color: #508f8c; */
+  width: 100%;
+  /* width: 187px; */
+  /* height: 44px; */
+}
+
+.select__control {
+  /* Стили для основного поля ввода */
+  background-color: #508f8c;
+  border: 1px solid #fcfcfc;
+  border-radius: 8px;
+  padding: 10px 14px;
+}
+
+.select__menu {
+  /* Стили для выпадающего меню */
+  background-color: #294045;
+  border: 1px solid red;
+}
+
+.select__option {
+  /* Стили для опций */
+  background-color: #294045;
+  padding: 10px;
+}
+
+.select__option--is-focused {
+  /* Стили для фокусированной опции */
+  /* background-color: #e6f7ff; */
+  background-color: #294045;
+}
+
+.select__option--is-selected {
+  /* Стили для выбранной опции */
+  /* background-color: #bae7ff; */
+  background-color: #294045;
+}
+
+@media (min-width: 768px) {
+  .selectWrapper {
+    /* padding: 16px;
+    margin: 0 auto; */
+    width: 317px;
+  }
+}
+
+/* .selectWrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: row;
+  gap: 20px;
+
+  max-width: 395px;
+} */
+
+@media (min-width: 1280px) {
+  .selectWrapper {
+    width: 395px;
+  }
+}
