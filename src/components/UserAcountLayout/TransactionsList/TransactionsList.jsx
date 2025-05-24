@@ -1,22 +1,11 @@
-// import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import TransactionsItem from '../TransactionsItem/TransactionsItem';
 import s from './TransactionsList.module.css';
-// import { selectTransactions } from '../../redux/selectors';
-
-import 'overlayscrollbars/styles/overlayscrollbars.css';
-import {
-  OverlayScrollbars,
-  ScrollbarsHidingPlugin,
-  SizeObserverPlugin,
-  ClickScrollPlugin,
-} from 'overlayscrollbars';
 
 import { useEffect, useRef } from 'react';
+import ButtonAddTransaction from '../ButtonAddTransaction/ButtonAddTransaction';
 
 function TransactionsList() {
-  //   const transactions = useSelector(selectTransactions);
-
   const scrollRef = useRef(null);
 
   const transactions = [
@@ -181,66 +170,41 @@ function TransactionsList() {
       sum: 25,
     },
   ];
-  const isMobile = useMediaQuery({ query: '(max-width:768px)' });
-
-  // useEffect(() => {
-  //   if (!isMobile && scrollRef.current) {
-  //     OverlayScrollbars.plugin([
-  //       ScrollbarsHidingPlugin,
-  //       SizeObserverPlugin,
-  //       ClickScrollPlugin,
-  //     ]);
-  //     const osInstance = OverlayScrollbars(scrollRef.current, {
-  //       scrollbars: {
-  //         // theme: 'os-theme-custom',
-  //         dragScroll: true,
-  //         clickScroll: true,
-  //         touchSupport: true,
-  //         theme: 'os-theme-light',
-  //       },
-  //     });
-  //
-  //     return () => {
-  //       if (osInstance) osInstance.destroy();
-  //     };
-  //   }
-  // }, [isMobile]);
 
   return (
-      <div className={s.wrapper}>
-        <div className={s.transactionContainer}>
-          <div className={s.tableHeader}>
-            <p>Date</p>
-            <p className={s.type}>Type</p>
-            <p>Category</p>
-            <p>Comment</p>
-            <p>Sum</p>
-          </div>
-          <div className={`${s.container} ${s[`scroll-container`]}`} ref={scrollRef}>
-            {transactions.length === 0 ? (
-                <p className={s.stub}>There are no transactions yet</p>
-            ) : (
-                <>
-
-                  {transactions.map((item, index) => (
-                      <TransactionsItem
-                          key={item.id + item.sum + index}
-                          id={item.id}
-                          date={item.date}
-                          type={item.type}
-                          category={item.category}
-                          comment={item.comment}
-                          sum={item.sum}
-                      />
-                  ))}
-                </>
-            )}
-          </div>
-          <div className={s.fabContainer}>
-            <button className={s.fab}>+</button>
-          </div>
+    <div className={s.wrapper}>
+      <div className={s.transactionContainer}>
+        <div className={s.tableHeader}>
+          <p>Date</p>
+          <p className={s.type}>Type</p>
+          <p>Category</p>
+          <p>Comment</p>
+          <p>Sum</p>
+        </div>
+        <div className={`${s.container} ${s[`scroll-container`]}`}>
+          {transactions.length === 0 ? (
+            <p className={s.stub}>There are no transactions yet</p>
+          ) : (
+            <>
+              {transactions.map((item, index) => (
+                <TransactionsItem
+                  key={item.id + item.sum + index}
+                  id={item.id}
+                  date={item.date}
+                  type={item.type}
+                  category={item.category}
+                  comment={item.comment}
+                  sum={item.sum}
+                />
+              ))}
+            </>
+          )}
+        </div>
+        <div className={s.fabContainer}>
+          <ButtonAddTransaction />
         </div>
       </div>
+    </div>
   );
 }
 

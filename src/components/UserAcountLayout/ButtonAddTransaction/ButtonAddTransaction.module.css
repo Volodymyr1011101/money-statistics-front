@@ -1,0 +1,59 @@
+.container {
+    position: relative;
+    width: 56px;
+    height: 56px;
+}
+
+.horizontal,
+.vertical {
+    position: absolute;
+    background-color: black;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.horizontal {
+    width: 26px;
+    height: 2.25px;
+}
+
+.vertical {
+    width: 2.9px;
+    height: 26px;
+}
+
+/* Tablet */
+
+@media (min-width: 768px) {
+    .container {
+        position: relative;
+        width: 64px;
+        height: 64px;
+    }
+
+    .horizontal {
+        width: 30px;
+
+    }
+
+    .vertical {
+        height: 30px;
+        width: 2.9px;
+
+    }
+
+}
+
+/* Desktop */
+@media (min-width: 1280px) {
+    .horizontal {
+        width: 26px;
+        height: 2.25px;
+    }
+
+    .vertical {
+        width: 2.25px;
+        height: 26px;
+    }
+}
