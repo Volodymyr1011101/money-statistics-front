@@ -39,7 +39,7 @@ function TransactionsItem({ id, date, type, category, comment, sum }) {
         </div>
       </div>
 
-      {/* Tablet & Desctop */}
+      {/* Tablet & Desktop */}
       <div className={s.tableBody}>
         <p>{date}</p>
         <p className={s.type}>{isIncome ? '+' : '-'}</p>

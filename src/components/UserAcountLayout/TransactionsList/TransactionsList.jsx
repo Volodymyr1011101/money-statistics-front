@@ -3,6 +3,7 @@ import TransactionsItem from '../TransactionsItem/TransactionsItem';
 import s from './TransactionsList.module.css';
 
 import { useEffect, useRef } from 'react';
+import ButtonAddTransaction from '../ButtonAddTransaction/ButtonAddTransaction';
 
 function TransactionsList() {
   const scrollRef = useRef(null);
@@ -200,7 +201,7 @@ function TransactionsList() {
           )}
         </div>
         <div className={s.fabContainer}>
-          <button className={s.fab}>+</button>
+          <ButtonAddTransaction />
         </div>
       </div>
     </div>

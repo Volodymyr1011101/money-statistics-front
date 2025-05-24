@@ -50,16 +50,8 @@
     overflow: hidden;
 }
 
-.fab {
-    background-color: #508f8c;
-    font-size: 5rem;
-    font-weight: 200;
-    text-align: center;
-    padding-bottom: .75rem;
 
-}
-
-.fab:hover {
+.fabContainer:hover {
     background-color: #1e2a38;
 }
 
@@ -110,11 +102,6 @@
 
     }
 
-    .fab {
-        font-size: 6rem;
-        padding-left: .45rem;
-        padding-bottom: .9rem;
-    }
 
     /* Основной контейнер со скроллингом */
     .scroll-container {
@@ -123,6 +110,7 @@
         /* Firefox */
         scrollbar-color: #508F8C #294045;
         /* thumb и track для Firefox */
+        padding-bottom: 28px;
     }
 
     /* Для браузеров на основе WebKit (Chrome, Safari, Edge) */
@@ -177,10 +165,4 @@
 
     }
 
-    .fab {
-        font-size: 5rem;
-        padding-left: .45rem;
-        padding-bottom: .75rem;
-
-    }
 }
