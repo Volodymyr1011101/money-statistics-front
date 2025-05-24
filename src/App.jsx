@@ -15,6 +15,7 @@ function App() {
 
   useEffect(() => {
     dispatch(refreshUserThunk());
+
   }, [dispatch]);
 
   return isRefreshing ? null : (

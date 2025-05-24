@@ -20,8 +20,8 @@ export const loginThunk = createAsyncThunk(
   async (body, thunkAPI) => {
     try {
       const { data } = await api.post("/auth/login", body);
-      setAuthHeader(data.accessToken);
-      return data;
+      setAuthHeader(data.data.accessToken);
+      return data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(
         error?.response?.data?.message || error.message

@@ -22,7 +22,7 @@ const authSlice = createSlice({
       .addCase(loginThunk.pending, (state, action) => {})
       .addCase(loginThunk.fulfilled, (state, action) => {
         state.user = action.payload.user;
-        state.token = action.payload.token;
+        state.token = action.payload.accessToken;
         state.isLoggedIn = true;
       })
       .addCase(loginThunk.rejected, (state, action) => initialState)
