@@ -2,10 +2,15 @@ import { useMediaQuery } from 'react-responsive';
 import TransactionsItem from '../TransactionsItem/TransactionsItem';
 import s from './TransactionsList.module.css';
 
-import { useEffect, useRef } from 'react';
-import ButtonAddTransaction from '../ButtonAddTransaction/ButtonAddTransaction';
+import { useEffect, useRef, useState } from 'react';
+import ModalAddTransaction from '../../ModalAddTransaction/ModalAddTransaction';
+import ModalEditTransaction from '../../ModalEditTransaction/ModalEditTransaction';
 
 function TransactionsList() {
+  const [showModalAddTransaction, setShowModalAddTransaction] = useState(false);
+
+  //   const transactions = useSelector(selectTransactions);
+
   const scrollRef = useRef(null);
 
   const transactions = [
@@ -170,6 +175,10 @@ function TransactionsList() {
       sum: 25,
     },
   ];
+ const handleEditClick = (transaction) => {
+    setSelectedTransaction(transaction);
+    setShowModalEditTransaction(true);
+  };
 
   return (
     <div className={s.wrapper}>
@@ -181,7 +190,7 @@ function TransactionsList() {
           <p>Comment</p>
           <p>Sum</p>
         </div>
-        <div className={`${s.container} ${s[`scroll-container`]}`}>
+        <div className={`${s.container} ${s[`scroll-container`]}`} ref={scrollRef}>
           {transactions.length === 0 ? (
             <p className={s.stub}>There are no transactions yet</p>
           ) : (
@@ -195,15 +204,27 @@ function TransactionsList() {
                   category={item.category}
                   comment={item.comment}
                   sum={item.sum}
+                  onEdit={() => handleEditClick(item)}
                 />
               ))}
             </>
           )}
         </div>
         <div className={s.fabContainer}>
-          <ButtonAddTransaction />
+          <button className={s.fab} onClick={() => setShowModalAddTransaction(true)}>+</button>
         </div>
       </div>
+      
+      {showModalAddTransaction && (
+        <ModalAddTransaction onClose={() => setShowModalAddTransaction(false)} />
+      )}
+      
+      {showModalEditTransaction && selectedTransaction && (
+        <ModalEditTransaction 
+          onClose={() => setShowModalEditTransaction(false)} 
+          transaction={selectedTransaction} 
+        />
+      )}
     </div>
   );
 }

@@ -1,10 +1,10 @@
 import React from 'react'
 import s from '../Balance/Balance.module.css'
-import { selectUser } from '../../../redux/auth/selectors.js'
+// import { selectUser } from '../../../redux/auth/selectors.js'
 import { useSelector } from 'react-redux'
 
 const Balance = () => {
-  const user = useSelector(selectUser);
+  const user = useSelector((state) => state.auth.user);
 
   return (
     <div className={s.balance_wrapper}>
