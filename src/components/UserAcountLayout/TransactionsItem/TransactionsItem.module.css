@@ -16,6 +16,10 @@
     box-sizing: border-box;
 }
 
+.tableBody {
+    display: none;
+}
+
 .transactionIncome {
     border-color: #1dd1a1;
 }
@@ -85,16 +89,16 @@
 
 /* Tablet  */
 
-@media (min-width: 769px) {
+@media (min-width: 768px) {
 
     .container {
+        width: 94%;
         height: 48px;
         min-height: 48px;
         box-sizing: border-box;
         font-size: 14px;
         font-weight: 400;
-        margin: 0;
-        /* margin-bottom: 1rem; */
+        margin: 0 auto;
 
     }
 
@@ -102,11 +106,7 @@
 
     .transactionIncome,
     .transactionExpense {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        gap: 0;
-        padding: 0.75rem 1rem;
+        display: none;
     }
 
     .row {
@@ -131,7 +131,7 @@
         border-radius: 16px;
     }
 
-    .container:nth-child(2n + 2) {
+    .container:nth-child(even) {
         background: #294045;
         background: linear-gradient(180deg, #294045 0%, #1e2f33 100%);
     }
