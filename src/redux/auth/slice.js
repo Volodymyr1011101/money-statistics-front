@@ -21,8 +21,9 @@ const authSlice = createSlice({
     builder
       .addCase(loginThunk.pending, (state, action) => {})
       .addCase(loginThunk.fulfilled, (state, action) => {
-        state.user = action.payload.user;
-        state.token = action.payload.accessToken;
+        const { accessToken, ...userData } = action.payload;
+        state.user = userData
+        state.token = accessToken;
         state.isLoggedIn = true;
       })
       .addCase(loginThunk.rejected, (state, action) => initialState)
@@ -30,7 +31,7 @@ const authSlice = createSlice({
         state.isRefreshing = true;
       })
       .addCase(refreshUserThunk.fulfilled, (state, action) => {
-        state.user = action.payload;
+        state.user = action.payload.data;
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })
@@ -38,8 +39,9 @@ const authSlice = createSlice({
         state.isRefreshing = false;
       })
       .addCase(register.fulfilled, (state, action) => {
-        state.user = action.payload.user;
-        state.token = action.payload.token;
+        const {accessToken, ...userData} = action.payload.user;
+        state.user = userData
+        state.token = accessToken;
         state.isLoggedIn = true;
       })
       .addCase(logOut.fulfilled, () => initialState);

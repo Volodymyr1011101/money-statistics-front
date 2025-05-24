@@ -35,7 +35,6 @@ export const refreshUserThunk = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const savedToken = thunkAPI.getState().auth.token;
-
       if (savedToken == null) {
         return thunkAPI.rejectWithValue("Empty token");
       }
@@ -54,7 +53,7 @@ export const refreshUserThunk = createAsyncThunk(
 
 export const register = createAsyncThunk(
   "auth/register",
-  async (userData, { rejectWithValue }) => {
+  async (userData, thunkAPI) => {
     const { email, name, password } = userData;
     try {
       const response = await api.post("/auth/register", {
@@ -62,13 +61,15 @@ export const register = createAsyncThunk(
         email,
         password,
       });
+      console.log(response);
+      setAuthHeader(response.data.user.accessToken);
       return response.data;
     } catch (error) {
       const message =
         error.response?.data?.message ||
         "Sorry, something went wrong during registration. Please try again or contact support";
       toast.error(message);
-      return rejectWithValue(message);
+      return thunkAPI.rejectWithValue(message);
     }
   }
 );
