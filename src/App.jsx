@@ -7,11 +7,16 @@ import { router } from "./router/router";
 import { selectIsRefreshing } from "./redux/auth/selectors";
 import { refreshUserThunk } from "./redux/auth/operations";
 import { Suspense } from "react";
+import { Loader } from "./components/Loader/Loader";
+
+const CustomLoader = () => {
+  const isLoading = useSelector((state) => state.isLoading);
+  return isLoading && <Loader />;
+};
 
 function App() {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
-
 
   useEffect(() => {
     dispatch(refreshUserThunk());
@@ -19,11 +24,14 @@ function App() {
 
   return isRefreshing ? null : (
     // TODO: add PageLoader
-    <Suspense fallback={<p>Loading .......</p>}>
-      <div className="App">
-        <RouterProvider router={router} />
-      </div>
-    </Suspense>
+    <>
+      <CustomLoader />
+      <Suspense fallback={<Loader />}>
+        <div className="App">
+          <RouterProvider router={router} />
+        </div>
+      </Suspense>
+    </>
   );
 }
 
