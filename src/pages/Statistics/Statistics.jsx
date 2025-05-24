@@ -5,12 +5,12 @@ const Statistics = () => {
   return (
     <div className={css.statisticWrapper}>
       <div className={css.toggleChart}>
-        <div>Toggle</div>
+        <FrontToggle />
         <div>Chart</div>
       </div>
       <div className={css.dashTable}>
         <StatisticsDashboard />
-        <div>StatisticsTable</div>
+        <StatisticsTable />
       </div>
     </div>
   );
