@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import * as Yup from "yup";
 import s from '../ModalAddTransaction/ModalAddTransaction.module.css'
 import CloseIcon from '../../UI/CloseIcon/CloseIcon'
-import { Field, Form, Formik } from 'formik'
+import { ErrorMessage, Field, Form, Formik } from 'formik'
 import Button from '../../UI/Button/Button'
 import DataField from '../../UI/DataField/DataField'
 import { FaRegCalendarAlt } from "react-icons/fa";
@@ -19,15 +19,21 @@ const ModalAddTransaction = ({ onClose }) => {
   }, [onClose]);
 
   const initialValues = {
-    sum: '',
-    data: '',
+    sum: null,
+    data: null,
     comment: ''
   };
 
   const validation = Yup.object().shape({
-    sum: Yup.string(),
-    data: Yup.date(),
-    comment: Yup.string()
+    sum: Yup.number()
+    .typeError('Must be a number')
+    .positive('Must be greater than zero')
+    .required('Required'),
+  data: Yup.date()
+    .typeError('Invalid date')
+    .required('Required'),
+  comment: Yup.string()
+    .max(100, 'Max 100 characters')
   });
 
 
@@ -53,30 +59,40 @@ const ModalAddTransaction = ({ onClose }) => {
           onSubmit={handleSubmit}
       >
         <Form className={s.form}>
-          <div className={s.wrapper_Tab}>
-            <Field
-              className={s.form_input}
-              type='text'
-              name='sum'
-              placeholder='0.00'
+            <div className={s.wrapper_Tab}>
+              <div className={s.input_wrap}>
+                <Field
+                  className={s.form_input}
+                  type='text'
+                  name='sum'
+                  placeholder='0.00'
               />
-              <div className={s.form_wrapper_data}>
-                <DataField name='data' className={s.form_input_data} />
-                <FaRegCalendarAlt className={s.icon} />
+                <ErrorMessage name="sum" component="div" className={s.error} />
               </div>
-              
+              <div className={s.form_wrapper_data}>
+                <div className={s.input_wrap}>
+                  <DataField name='data' className={s.form_input_data} />
+                  <ErrorMessage name="data" component="div" className={s.error} />
+                </div>
+                  <FaRegCalendarAlt className={s.icon} />
+                </div>
+                
             </div>    
            
-            <Field
-              className={s.form_input}
-              type='text'
-              name='comment'
-              placeholder='Comment'
+            <div className={s.input_wrap}>
+              <Field
+                className={s.form_input}
+                type='text'
+                name='comment'
+                placeholder='Comment'
               />
+              <ErrorMessage name="comment" component="div" className={s.error} />
+            </div>
             <div className={s.buttons_modal}>
               <Button
                 className={s.btn_modal}
                 type='submit'
+                onClick={handleSubmit}
               >Add 
               </Button>
               <Button

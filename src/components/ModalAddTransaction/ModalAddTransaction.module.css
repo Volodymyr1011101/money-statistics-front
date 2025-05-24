@@ -8,7 +8,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 10;
 }
 
 .modal {
@@ -96,6 +96,8 @@
     border: 1px solid black;
     border-radius: 8px;
     padding-right: 12px;
+    position: relative;
+    z-index: 100;
 }
 
 .form_wrapper_data:hover {
@@ -128,13 +130,23 @@
     cursor: pointer;
     position: relative;
     z-index: 1;
-    overflow: hidden;
 }
 
 .btn_modal:hover,
 .btn_modal:focus {
     background: linear-gradient(to bottom, #355359 0%, #3B5D63 100%);
     color: #FCFCFC;
+}
+
+.error {
+    margin-top: 4px;
+    font-size: 10px;
+    color: #b20202; 
+}
+
+.input_wrap {
+    width: 100%;
+    position: relative; 
 }
 
 /* Планшет */
