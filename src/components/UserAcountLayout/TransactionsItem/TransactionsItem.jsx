@@ -35,7 +35,9 @@ function TransactionsItem({ id, date, type, category, comment, sum, onEdit }) {
         </div>
         <div className={s.actions}>
           <button className={s.deleteButton}>Delete</button>
-          <button className={s.editButton} onClick={onEdit}>✎ Edit</button>
+          <button className={s.editButton} onClick={onEdit}>
+            ✎ Edit
+          </button>
         </div>
       </div>
 
@@ -46,7 +48,9 @@ function TransactionsItem({ id, date, type, category, comment, sum, onEdit }) {
         <p>{category}</p>
         <p className={s.comment}>{comment}</p>
         <p>{sum}</p>
-        <button className={s.editButton} onClick={onEdit}>✎ </button>
+        <button className={s.editButton} onClick={onEdit}>
+          ✎{' '}
+        </button>
         <button className={s.deleteButton}>Delete</button>
       </div>
     </div>
