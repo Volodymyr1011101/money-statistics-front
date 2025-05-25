@@ -1,11 +1,30 @@
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import s from './TransactionsItem.module.css';
-import { useMediaQuery } from 'react-responsive';
+
+import ModalEditTransaction from '../../ModalEditTransaction/ModalEditTransaction';
+import ModalConfirmDelete from '../ModalConfirmDelete/ModalConfirmDelete.';
+import { deleteTransaction } from '../../../redux/transaction/operations';
 
 function TransactionsItem({ id, date, type, category, comment, sum, onEdit }) {
   const dispatch = useDispatch();
-
   const isIncome = type === 'income';
+
+  const [showModalEdit, setShowModalEdit] = useState(false);
+  const [showModalDelete, setShowModalDelete] = useState(false);
+
+  const handleEditClick = () => {
+    setShowModalEdit(true);
+  };
+
+  const handleDeleteClick = () => {
+    setShowModalDelete(true);
+  };
+
+  const handleConfirmDelete = () => {
+    dispatch(deleteTransaction);
+    setShowModalDelete(false);
+  };
 
   return (
     <div className={s.container}>
@@ -34,8 +53,10 @@ function TransactionsItem({ id, date, type, category, comment, sum, onEdit }) {
           </span>
         </div>
         <div className={s.actions}>
-          <button className={s.deleteButton}>Delete</button>
-          <button className={s.editButton} onClick={onEdit}>
+          <button className={s.deleteButton} onClick={handleDeleteClick}>
+            Delete
+          </button>
+          <button className={s.editButton} onClick={handleEditClick}>
             ✎ Edit
           </button>
         </div>
@@ -48,11 +69,27 @@ function TransactionsItem({ id, date, type, category, comment, sum, onEdit }) {
         <p>{category}</p>
         <p className={s.comment}>{comment}</p>
         <p>{sum}</p>
-        <button className={s.editButton} onClick={onEdit}>
-          ✎{' '}
+        <button className={s.editButton} onClick={handleEditClick}>
+          ✎
         </button>
-        <button className={s.deleteButton}>Delete</button>
+        <button className={s.deleteButton} onClick={handleDeleteClick}>
+          Delete
+        </button>
       </div>
+
+      {showModalEdit && (
+        <ModalEditTransaction
+          transaction={{ id, date, type, category, comment, sum }}
+          onClose={() => setShowModalEdit(false)}
+        />
+      )}
+
+      {showModalDelete && (
+        <ModalConfirmDelete
+          onConfirm={handleConfirmDelete}
+          onCancel={() => setShowModalDelete(false)}
+        />
+      )}
     </div>
   );
 }

@@ -5,14 +5,14 @@
   flex-direction: row;
   gap: 20px;
 
-  width: 264px;
+  width: 100%;
+  padding: 0 12px;
 }
 
 .select {
   /* Стили для внешнего контейнера */
-  /* background-color: #508f8c; */
-  width: 100%;
-  /* width: 187px; */
+  background-color: transparent !important;
+  width: 50%;
   /* height: 44px; */
 }
 
@@ -53,6 +53,7 @@
     /* padding: 16px;
     margin: 0 auto; */
     width: 317px;
+    padding: 0;
   }
 }
 

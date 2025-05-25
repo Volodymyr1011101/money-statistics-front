@@ -6,7 +6,7 @@
   gap: 60px;
 
   border-radius: 16px;
-  padding: 16px 12px;
+  padding: 16px 0;
   width: 288px;
   margin: 0 auto;
   /* height: 741px; */
@@ -55,10 +55,12 @@
     margin: 32px auto;
     gap: 16px;
   }
+
   .toggleChart {
     width: 288px;
     height: 364px;
   }
+
   .dashTable {
     min-width: 395px;
     /* height: 325px; */

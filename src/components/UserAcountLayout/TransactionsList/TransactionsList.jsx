@@ -1,13 +1,10 @@
-import { useMediaQuery } from 'react-responsive';
 import TransactionsItem from '../TransactionsItem/TransactionsItem';
 import s from './TransactionsList.module.css';
-
-import { useRef, useState } from 'react';
-import ModalAddTransaction from '../../ModalAddTransaction/ModalAddTransaction';
+import {useRef, useState} from 'react';
 import ModalEditTransaction from '../../ModalEditTransaction/ModalEditTransaction';
-import { selectTransactions } from '../../../redux/transaction/selectors';
-import { useSelector } from 'react-redux';
-import ButtonAddTransaction from "../ButtonAddTransaction/ButtonAddTransaction";
+import ButtonAddTransaction from '../ButtonAddTransaction/ButtonAddTransaction';
+import ModalAddTransaction from "../../ModalAddTransaction/ModalAddTransaction";
+
 
 function TransactionsList() {
   const [showModalAddTransaction, setShowModalAddTransaction] = useState(false);
@@ -183,7 +180,7 @@ function TransactionsList() {
       sum: 25,
     },
   ];
-  const handleEditClick = transaction => {
+  const handleEditClick = (transaction) => {
     setSelectedTransaction(transaction);
     setShowModalEditTransaction(true);
   };
@@ -226,12 +223,7 @@ function TransactionsList() {
           )}
         </div>
         <div className={s.fabContainer}>
-          <button
-            className={s.fab}
-            onClick={() => setShowModalAddTransaction(true)}
-          >
-            +
-          </button>
+          <ButtonAddTransaction className={s.fab} />
         </div>
       </div>
 
