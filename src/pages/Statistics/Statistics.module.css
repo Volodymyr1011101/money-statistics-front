@@ -8,7 +8,7 @@
   border-radius: 16px;
   padding: 16px 0;
   width: 288px;
-  margin: 0 auto;
+  margin: 0 auto 16px;
   /* height: 741px; */
 
   background-color: #355359;
@@ -41,7 +41,7 @@
     flex-direction: row;
 
     padding: 16px;
-    margin: 0 auto;
+    margin: 0 auto 32px;
     width: 698px;
     gap: 59px;
   }
@@ -49,10 +49,10 @@
 
 @media (min-width: 1280px) {
   .statisticWrapper {
-    padding: 16px;
-    margin: 0 auto;
-    max-width: 757px;
-    margin: 32px auto;
+    padding: 16px 32px;
+    /* margin: 0 auto; */
+    width: 757px;
+    margin: 32px 0;
     gap: 16px;
   }
 

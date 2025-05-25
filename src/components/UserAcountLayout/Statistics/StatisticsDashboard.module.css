@@ -4,48 +4,50 @@
   justify-content: space-between;
   flex-direction: row;
   gap: 20px;
+  width: 264px;
+}
 
+.selectContainer {
   width: 100%;
-  padding: 0 12px;
+  color: #fcfcfc;
 }
 
-.select {
-  /* Стили для внешнего контейнера */
-  background-color: transparent !important;
-  width: 50%;
-  /* height: 44px; */
-}
-
-.select__control {
-  /* Стили для основного поля ввода */
-  background-color: #508f8c;
+:global(.select__control) {
+  background-color: #355359;
   border: 1px solid #fcfcfc;
   border-radius: 8px;
-  padding: 10px 14px;
+  /* padding: 6px; */
+
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  color: #fcfcfc;
 }
 
-.select__menu {
-  /* Стили для выпадающего меню */
-  background-color: #294045;
-  border: 1px solid red;
+:global(.select__control--is-focused) {
+  border-color: #355359;
 }
 
-.select__option {
-  /* Стили для опций */
-  background-color: #294045;
-  padding: 10px;
+:global(.select__menu) {
+  background-color: #1e2f33;
+  border-radius: 8px;
+  margin-top: 4px;
 }
 
-.select__option--is-focused {
-  /* Стили для фокусированной опции */
-  /* background-color: #e6f7ff; */
-  background-color: #294045;
+:global(.select__option) {
+  padding: 8px 12px;
+  cursor: pointer;
 }
 
-.select__option--is-selected {
-  /* Стили для выбранной опции */
-  /* background-color: #bae7ff; */
-  background-color: #294045;
+:global(.select__option--is-focused) {
+  background-color: #355359;
+}
+
+:global(.select__option--is-selected) {
+  background-color: #355359;
+}
+
+:global(.select__single-value) {
+  color: #fcfcfc;
 }
 
 @media (min-width: 768px) {
@@ -56,16 +58,6 @@
     padding: 0;
   }
 }
-
-/* .selectWrapper {
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  flex-direction: row;
-  gap: 20px;
-
-  max-width: 395px;
-} */
 
 @media (min-width: 1280px) {
   .selectWrapper {
