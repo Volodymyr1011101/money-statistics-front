@@ -17,6 +17,8 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
+import loaderReducer from "./loader/loaderSlice";
+
 const persistConfig = {
   key: "auth-data",
   version: 1,
@@ -28,6 +30,7 @@ const persistedReducer = persistReducer(persistConfig, authReducer);
 
 export const store = configureStore({
   reducer: {
+    isLoading: loaderReducer,
     auth: persistedReducer,
     transactions: transactionsReducer,
     filters: filtersReducer,

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import s from './FrontToggle.module.css';
 
-const FrontToggle = ({ onToggle }) => {
-  const [type, setType] = useState('expense');
+const FrontToggle = ({ onToggle, type = 'expense' }) => {
+  const [currentType, setCurrentType] = useState(type);
 
   const handleToggle = () => {
-    const newType = type === 'expense' ? 'income' : 'expense';
-    setType(newType);
+    const newType = currentType === 'expense' ? 'income' : 'expense';
+    setCurrentType(newType);
     if (onToggle) onToggle(newType);
   };
 
@@ -18,10 +18,10 @@ const FrontToggle = ({ onToggle }) => {
           <div className={s.switchContainer}>
             <div
               className={`${s.switchButton} ${
-                type === 'income' ? s.income : s.expense
+                currentType === 'income' ? s.income : s.expense
               }`}
             >
-              {type === 'income' ? '+' : '−'}
+              {currentType === 'income' ? '+' : '−'}
             </div>
           </div>
         </div>

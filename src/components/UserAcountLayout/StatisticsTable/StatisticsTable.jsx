@@ -15,7 +15,9 @@ const categoryColors = {
 };
 
 const StatisticsTable = ({ transactions }) => {
-  const expenseTransactions = transactions.filter((t) => t.type === 'expense');
+
+  if(!transactions) {return}
+  const expenseTransactions = transactions?.filter((t) => t.type === 'expense');
 
   const categorySums = expenseTransactions.reduce((acc, curr) => {
     if (!acc[curr.category]) {
