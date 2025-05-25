@@ -160,7 +160,7 @@ const RegistrationForm = ({ handleFlip }) => {
             />
           </div>
 
-          {touched.confirmPassword && values.confirmPassword && (
+          {/* {touched.confirmPassword && values.confirmPassword && (
             <PasswordStrengthBar
               password={values.confirmPassword}
               minLength={8}
@@ -185,7 +185,7 @@ const RegistrationForm = ({ handleFlip }) => {
               shortScoreWord="Too short"
               style={{ marginBottom: "1rem" }}
             />
-          )}
+          )} */}
           <button
             className={css.registerButton}
             type="submit"
