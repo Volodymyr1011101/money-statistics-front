@@ -64,13 +64,15 @@ const StatisticsDashboard = () => {
   return (
     <div className={css.selectWrapper}>
       <Select
-        className={css.select}
+        className={css.selectContainer}
+        classNamePrefix="select"
         onChange={handleMonthChange}
         options={monthOptions}
         value={defaultMonth}
       />
       <Select
-        className={css.select}
+        className={css.selectContainer}
+        classNamePrefix="select"
         onChange={handleYearChange}
         options={yearOptions}
         value={defaultYear}
