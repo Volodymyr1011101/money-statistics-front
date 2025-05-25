@@ -22,7 +22,7 @@
     align-items: center;
     gap: 30px;
     position: absolute;
-    top: 38px;
+    top: auto;
     left: 50%;
     transform: translateX(-50%);
 }
@@ -59,13 +59,13 @@
 .form_input {
     border: 1px solid black;
     border-radius: 8px;
-    padding: 10px 14px;
+    padding: 9px 14px;
     height: 40px;
     width: 100%;
     outline: none;
     background-color: transparent;
     font-weight: 500;
-    font-size: 18px;
+    font-size: 16px;
     color: #081222;
     transition: border-color 250ms ease; 
 }
@@ -147,6 +147,33 @@
 .input_wrap {
     width: 100%;
     position: relative; 
+}
+
+.form_select {
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 9px 14px;
+    height: 40px;
+    width: 100%;
+    outline: none;
+    background-color: transparent;
+    font-weight: 500;
+    font-size: 16px;
+    color: #081222;
+    transition: border-color 250ms ease;
+}
+
+.option {
+    background-color:#294045;
+    color: #FCFCFC;
+    font-weight: 500;
+    font-size: 16px;
+    border: none;
+}
+
+.option:hover {
+    background-color: #3B5D63;
+    font-weight: 700;
 }
 
 /* Планшет */
