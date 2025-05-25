@@ -6,7 +6,7 @@ import ModalEditTransaction from '../../ModalEditTransaction/ModalEditTransactio
 import ModalConfirmDelete from '../ModalConfirmDelete/ModalConfirmDelete.';
 import { deleteTransaction } from '../../../redux/transaction/operations';
 
-function TransactionsItem({ id, date, type, category, comment, sum }) {
+function TransactionsItem({ id, date, type, category, comment, sum, onEdit }) {
   const dispatch = useDispatch();
   const isIncome = type === 'income';
 

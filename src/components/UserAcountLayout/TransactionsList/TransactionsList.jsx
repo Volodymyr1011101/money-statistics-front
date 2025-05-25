@@ -1,13 +1,16 @@
 import TransactionsItem from '../TransactionsItem/TransactionsItem';
 import s from './TransactionsList.module.css';
 
-import { useRef } from 'react';
+import {useRef, useState} from 'react';
 import ModalEditTransaction from '../../ModalEditTransaction/ModalEditTransaction';
 import ButtonAddTransaction from '../ButtonAddTransaction/ButtonAddTransaction';
+import ModalAddTransaction from "../../ModalAddTransaction/ModalAddTransaction";
 
 function TransactionsList() {
+  const [showModalAddTransaction, setShowModalAddTransaction] = useState(false);
+  const [showModalEditTransaction, setShowModalEditTransaction] = useState(false);
   //   const transactions = useSelector(selectTransactions);
-
+  const [selectedTransaction, setSelectedTransaction] = useState(null);
   const scrollRef = useRef(null);
 
   const transactions = [
@@ -177,6 +180,10 @@ function TransactionsList() {
     setShowModalEditTransaction(true);
   };
 
+ const handleModalStateChange = () => {
+   setShowModalAddTransaction((prev) => !prev );
+ }
+
   return (
     <div className={s.wrapper}>
       <div className={s.transactionContainer}>
@@ -214,6 +221,17 @@ function TransactionsList() {
           <ButtonAddTransaction className={s.fab} />
         </div>
       </div>
+      
+      {showModalAddTransaction && (
+        <ModalAddTransaction onClose={handleModalStateChange} />
+      )}
+
+      {showModalEditTransaction && selectedTransaction && (
+        <ModalEditTransaction
+          onClose={() => setShowModalEditTransaction(false)}
+          transaction={selectedTransaction}
+        />
+      )}
     </div>
   );
 }
