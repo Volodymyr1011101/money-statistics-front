@@ -1,17 +1,75 @@
 .btn_exit {
-    background-color: transparent;
-    color: #FCFCFC;
-    border: none;
-    font-family: 'Inter', sans-serif;
-    font-size: 16px;
-    padding: 6px 8px;
-    display: flex;
-    gap: 8px;
-    border-left: 1px solid #FCFCFC;
-    cursor: pointer;
+  background-color: transparent;
+  color: #fcfcfc;
+  border: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  padding: 6px 8px;
+  display: flex;
+  gap: 8px;
+  border-left: 1px solid #fcfcfc;
+  cursor: pointer;
 }
 
 .svg_exit {
-    width: 18px;
-    height: 18px;
+  width: 18px;
+  height: 18px;
+}
+
+.logo_modal {
+  width: 182px;
+  height: 94px;
+}
+
+.text_modal {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  text-align: center;
+  line-height: 1.25;
+  color: #081222;
+  max-width: 196px;
+}
+
+.buttons_modal {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.btn_modal {
+  background-color: transparent;
+  color: #081222;
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  border: 1px solid #081222;
+  border-radius: 8px;
+  padding: 11px 93px;
+  transition: background 250ms linear, color 250ms linear;
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.btn_modal:hover,
+.btn_modal:focus {
+  background: linear-gradient(to bottom, #355359 0%, #3b5d63 100%);
+  color: #fcfcfc;
+}
+
+/* Планшет */
+@media (min-width: 768px) {
+  .logo_modal {
+    padding-bottom: 12px;
+  }
+  .text_modal {
+    max-width: 292px;
+  }
+  .buttons_modal {
+    gap: 21px;
+  }
+  .btn_modal {
+    padding: 11px 174px;
+  }
 }
