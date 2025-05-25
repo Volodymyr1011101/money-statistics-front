@@ -7,6 +7,7 @@ import ModalAddTransaction from '../../ModalAddTransaction/ModalAddTransaction';
 import ModalEditTransaction from '../../ModalEditTransaction/ModalEditTransaction';
 import { selectTransactions } from '../../../redux/transaction/selectors';
 import { useSelector } from 'react-redux';
+import ButtonAddTransaction from "../ButtonAddTransaction/ButtonAddTransaction";
 
 function TransactionsList() {
   const [showModalAddTransaction, setShowModalAddTransaction] = useState(false);
@@ -186,6 +187,10 @@ function TransactionsList() {
     setSelectedTransaction(transaction);
     setShowModalEditTransaction(true);
   };
+
+ const handleModalStateChange = () => {
+   setShowModalAddTransaction((prev) => !prev );
+ }
 
   return (
     <div className={s.wrapper}>
