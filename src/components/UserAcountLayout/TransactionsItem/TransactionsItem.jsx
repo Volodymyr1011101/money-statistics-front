@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import s from './TransactionsItem.module.css';
 import { useMediaQuery } from 'react-responsive';
 
-function TransactionsItem({ id, date, type, category, comment, sum }) {
+function TransactionsItem({ id, date, type, category, comment, sum, onEdit }) {
   const dispatch = useDispatch();
 
   const isIncome = type === 'income';
@@ -35,7 +35,9 @@ function TransactionsItem({ id, date, type, category, comment, sum }) {
         </div>
         <div className={s.actions}>
           <button className={s.deleteButton}>Delete</button>
-          <button className={s.editButton}>✎ Edit</button>
+          <button className={s.editButton} onClick={onEdit}>
+            ✎ Edit
+          </button>
         </div>
       </div>
 
@@ -46,7 +48,9 @@ function TransactionsItem({ id, date, type, category, comment, sum }) {
         <p>{category}</p>
         <p className={s.comment}>{comment}</p>
         <p>{sum}</p>
-        <button className={s.editButton}>✎ </button>
+        <button className={s.editButton} onClick={onEdit}>
+          ✎{' '}
+        </button>
         <button className={s.deleteButton}>Delete</button>
       </div>
     </div>
