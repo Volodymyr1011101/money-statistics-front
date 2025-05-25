@@ -3,6 +3,7 @@ import { createBrowserRouter } from "react-router";
 import { lazy } from "react";
 import RestrictedRoute from "./RestrictedRoute";
 import PrivateRoute from "./PrivateRoute";
+import Statistics from "../pages/Statistics/Statistics";
 
 const CurrencyPage = lazy(() => import("../pages/CurrencyPage"));
 const Layout = lazy(() =>
@@ -34,6 +35,10 @@ export const router = createBrowserRouter([
       {
         path: "currency",
         element: <CurrencyPage />,
+      },
+      {
+        path: "/statistics",
+        element: <Statistics />,
       },
     ],
   },
