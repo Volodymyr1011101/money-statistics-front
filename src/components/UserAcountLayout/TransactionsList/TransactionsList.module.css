@@ -9,7 +9,7 @@
 
 .transactionContainer {
     position: relative;
-    width: 320px;
+    width: 288px;
     border-radius: 16px;
     overflow: hidden;
 }
@@ -34,7 +34,7 @@
 
 .fabContainer {
     position: fixed;
-    right: calc(50% - 162px);
+    right: calc(50% - 144px);
     bottom: 1rem;
     width: 56px;
     height: 56px;

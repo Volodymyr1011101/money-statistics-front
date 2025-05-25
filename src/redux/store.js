@@ -3,6 +3,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { authReducer } from "./auth/slice";
 import transactionsReducer from "./transaction/slice";
 import filtersReducer from "./filter/slice";
+import { categoriesReducer } from "./categories/slice";
 
 import {
   persistStore,
@@ -33,6 +34,7 @@ export const store = configureStore({
     auth: persistedReducer,
     transactions: transactionsReducer,
     filters: filtersReducer,
+    categories: categoriesReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

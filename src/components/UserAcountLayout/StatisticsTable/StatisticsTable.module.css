@@ -1,9 +1,8 @@
 .container {
     width: 288px;
-    background: #3B5D63;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
-    padding: 16px;
+    padding: 16px 12px;
     font-family: sans-serif;
     color: #fff;
     margin: 0 auto;

@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import * as Yup from "yup";
 import s from '../ModalAddTransaction/ModalAddTransaction.module.css'
 import CloseIcon from '../../UI/CloseIcon/CloseIcon'
@@ -6,9 +6,13 @@ import { ErrorMessage, Field, Form, Formik } from 'formik'
 import Button from '../../UI/Button/Button'
 import DataField from '../../UI/DataField/DataField'
 import { FaRegCalendarAlt } from "react-icons/fa";
+import FrontToggle from '../UserAcountLayout/FrontToggle/FrontToggle';
+import { useSelector } from 'react-redux';
 
 
 const ModalAddTransaction = ({ onClose }) => {
+  const [type, setType] = useState('expense');
+
   useEffect(() => {
     const handleEsc = (e) => {
       if (e.key === 'Escape')
@@ -19,23 +23,39 @@ const ModalAddTransaction = ({ onClose }) => {
   }, [onClose]);
 
   const initialValues = {
+    type: 'expense',
     sum: null,
     data: null,
-    comment: ''
+    comment: '',
+    category: ''
   };
 
   const validation = Yup.object().shape({
+    type: Yup.string().required(),
     sum: Yup.number()
-    .typeError('Must be a number')
-    .positive('Must be greater than zero')
-    .required('Required'),
-  data: Yup.date()
-    .typeError('Invalid date')
-    .required('Required'),
-  comment: Yup.string()
-    .max(100, 'Max 100 characters')
+      .typeError('Must be a number')
+      .positive('Must be greater than zero')
+      .required('Required'),
+    data: Yup.date()
+      .typeError('Invalid date')
+      .required('Required'),
+    comment: Yup.string()
+        .max(100, 'Max 100 characters'),
+    category: Yup.string()
   });
 
+  const category = [
+    "Main expenses",
+    "Products",
+    "Car",
+    "Self care",
+    "Child care",
+    "Household products",
+    "Education",
+    "Leisure",
+    "Other expenses",
+    "Entertainment"
+  ]
 
   
   const handleSubmit = () => {
@@ -52,14 +72,33 @@ const ModalAddTransaction = ({ onClose }) => {
           onClose = {onClose}
         />
       <h2 className={s.title}>Add transaction</h2>
-      <h2>Toggle</h2>
+        <FrontToggle type={type} onToggle={setType} />
+
       <Formik
           initialValues={initialValues}
           validationSchema={validation}
           onSubmit={handleSubmit}
       >
         <Form className={s.form}>
-            <div className={s.wrapper_Tab}>
+           
+              
+              {(type === 'expense') && (
+                <div className={s.input_wrap}>
+                  <Field
+                    className={s.form_select}
+                    as="select"
+                    name="category"
+                  >
+                    <option className={s.option} value="" disabled>Category</option>
+                    {category.map(item => (
+                      <option
+                        className={s.option}
+                        value={item}>{item}</option>
+                    ))}
+                  </Field>
+                </div>
+                )}
+             <div className={s.wrapper_Tab}>
               <div className={s.input_wrap}>
                 <Field
                   className={s.form_input}
