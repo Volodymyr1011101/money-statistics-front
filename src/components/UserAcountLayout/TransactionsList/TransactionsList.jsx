@@ -2,9 +2,15 @@ import { useMediaQuery } from 'react-responsive';
 import TransactionsItem from '../TransactionsItem/TransactionsItem';
 import s from './TransactionsList.module.css';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import ModalAddTransaction from '../../ModalAddTransaction/ModalAddTransaction';
+import ModalEditTransaction from '../../ModalEditTransaction/ModalEditTransaction';
 
 function TransactionsList() {
+  const [showModalAddTransaction, setShowModalAddTransaction] = useState(false);
+
+  //   const transactions = useSelector(selectTransactions);
+
   const scrollRef = useRef(null);
 
   const transactions = [
@@ -169,6 +175,10 @@ function TransactionsList() {
       sum: 25,
     },
   ];
+ const handleEditClick = (transaction) => {
+    setSelectedTransaction(transaction);
+    setShowModalEditTransaction(true);
+  };
 
   return (
     <div className={s.wrapper}>
