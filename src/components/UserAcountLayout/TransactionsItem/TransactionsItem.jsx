@@ -46,7 +46,7 @@ function TransactionsItem({ id, date, type, category, comment, sum }) {
         <p>{category}</p>
         <p className={s.comment}>{comment}</p>
         <p>{sum}</p>
-        <button className={s.editButton}>✎ </button>
+        <button className={s.editButton} onClick={() => handleEditClick(item)}>✎ </button>
         <button className={s.deleteButton}>Delete</button>
       </div>
     </div>
