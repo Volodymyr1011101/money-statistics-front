@@ -1,14 +1,11 @@
-import { useMediaQuery } from 'react-responsive';
 import TransactionsItem from '../TransactionsItem/TransactionsItem';
 import s from './TransactionsList.module.css';
 
-import { useEffect, useRef, useState } from 'react';
-import ModalAddTransaction from '../../ModalAddTransaction/ModalAddTransaction';
+import { useRef } from 'react';
 import ModalEditTransaction from '../../ModalEditTransaction/ModalEditTransaction';
+import ButtonAddTransaction from '../ButtonAddTransaction/ButtonAddTransaction';
 
 function TransactionsList() {
-  const [showModalAddTransaction, setShowModalAddTransaction] = useState(false);
-
   //   const transactions = useSelector(selectTransactions);
 
   const scrollRef = useRef(null);
@@ -175,7 +172,7 @@ function TransactionsList() {
       sum: 25,
     },
   ];
- const handleEditClick = (transaction) => {
+  const handleEditClick = (transaction) => {
     setSelectedTransaction(transaction);
     setShowModalEditTransaction(true);
   };
@@ -190,7 +187,10 @@ function TransactionsList() {
           <p>Comment</p>
           <p>Sum</p>
         </div>
-        <div className={`${s.container} ${s[`scroll-container`]}`} ref={scrollRef}>
+        <div
+          className={`${s.container} ${s[`scroll-container`]}`}
+          ref={scrollRef}
+        >
           {transactions.length === 0 ? (
             <p className={s.stub}>There are no transactions yet</p>
           ) : (
@@ -211,20 +211,9 @@ function TransactionsList() {
           )}
         </div>
         <div className={s.fabContainer}>
-          <button className={s.fab} onClick={() => setShowModalAddTransaction(true)}>+</button>
+          <ButtonAddTransaction className={s.fab} />
         </div>
       </div>
-      
-      {showModalAddTransaction && (
-        <ModalAddTransaction onClose={() => setShowModalAddTransaction(false)} />
-      )}
-      
-      {/*{showModalEditTransaction && selectedTransaction && (*/}
-      {/*  <ModalEditTransaction */}
-      {/*    onClose={() => setShowModalEditTransaction(false)} */}
-      {/*    transaction={selectedTransaction} */}
-      {/*  />*/}
-      {/*)}*/}
     </div>
   );
 }

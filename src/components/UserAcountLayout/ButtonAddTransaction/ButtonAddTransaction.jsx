@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import s from './ButtonAddTransaction.module.css';
 
-// import ModalAddTransaction from '../ModalAddTransaction/ModalAddTransaction';
-import Modal from '../Modal/Modal';
+import ModalAddTransaction from '../../ModalAddTransaction/ModalAddTransaction';
 
 const ButtonAddTransaction = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -18,8 +17,7 @@ const ButtonAddTransaction = () => {
         <div className={s.vertical}></div>
       </div>
 
-      {/* {isModalOpen && <ModalAddTransaction onClose={toggleModal} />} */}
-      {isModalOpen && <Modal onClose={toggleModal} />}
+      {isModalOpen && <ModalAddTransaction onClose={toggleModal} />}
     </>
   );
 };
