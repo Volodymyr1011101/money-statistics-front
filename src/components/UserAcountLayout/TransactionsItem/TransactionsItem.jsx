@@ -9,7 +9,6 @@ import { refreshUserThunk } from '../../../redux/auth/operations';
 
 function TransactionsItem({ transaction, onEdit }) {
     const { _id, date, type, category, comment, sum } = transaction;
-    console.log(_id);
     const dispatch = useDispatch();
     const isIncome = type === 'income';
 
