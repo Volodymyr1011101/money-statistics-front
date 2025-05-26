@@ -21,7 +21,6 @@ export const fetchAllTransactions = createAsyncThunk(
             setAuthHeader(token);
 
             const response = await api.get('/');
-            console.log(response.data);
             return response.data.result;
         } catch (error) {
             return rejectWithValue(
@@ -97,7 +96,7 @@ export const deleteTransaction = createAsyncThunk(
                 return rejectWithValue('User is not authorized');
             }
             setAuthHeader(token);
-            await api.delete(`/delete/${id}`);
+            await api.delete(`/${id}`);
             return id;
         } catch (error) {
             return rejectWithValue(

@@ -89,7 +89,6 @@ const ModalAddTransaction = ({ onClose }) => {
                 <FrontToggle
                     type={type}
                     onToggle={prev => {
-                        console.log(prev);
                         setType(prev !== 'expense' ? 'income' : 'expense');
                     }}
                 />

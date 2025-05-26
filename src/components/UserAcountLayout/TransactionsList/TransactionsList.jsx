@@ -19,7 +19,6 @@ function TransactionsList() {
     const scrollRef = useRef(null);
 
     // наразі поля не співпадають
-    console.log(transactions);
     const handleEditClick = transaction => {
         setSelectedTransaction(transaction);
         setShowModalEditTransaction(true);
@@ -43,7 +42,7 @@ function TransactionsList() {
                     className={`${s.container} ${s[`scroll-container`]}`}
                     ref={scrollRef}
                 >
-                    {!transactions ? (
+                    {transactions.length === 0 ? (
                         <p className={s.stub}>There are no transactions yet</p>
                     ) : (
                         <>
