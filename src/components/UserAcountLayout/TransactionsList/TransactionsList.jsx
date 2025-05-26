@@ -13,12 +13,11 @@ function TransactionsList() {
     const [selectedTransaction, setSelectedTransaction] = useState(null);
     const [showModalEditTransaction, setShowModalEditTransaction] =
         useState(false);
-
     const transactions = useSelector(selectTransactions);
 
     const scrollRef = useRef(null);
 
-    // наразі поля не співпадаютью
+    // наразі поля не співпадають
     console.log(transactions);
     const handleEditClick = transaction => {
         setSelectedTransaction(transaction);
@@ -28,10 +27,6 @@ function TransactionsList() {
     const handleModalStateChange = () => {
         setShowModalAddTransaction(prev => !prev);
     };
-
-    // useEffect(() => {
-
-    // }, [])
 
     return (
         <div className={s.wrapper}>
@@ -47,11 +42,11 @@ function TransactionsList() {
                     className={`${s.container} ${s[`scroll-container`]}`}
                     ref={scrollRef}
                 >
-                    {transactions.length === 0 ? (
+                    {!transactions ? (
                         <p className={s.stub}>There are no transactions yet</p>
                     ) : (
                         <>
-                            {transactions.result.map((item, index) => (
+                            {transactions.map((item, index) => (
                                 <TransactionsItem
                                     key={item.id + item.sum + index}
                                     id={item.id}
