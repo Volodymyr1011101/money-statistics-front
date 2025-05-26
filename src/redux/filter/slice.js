@@ -7,6 +7,8 @@ const currentYear = String(currentDate.getFullYear());
 const initialState = {
   selectedMonth: currentMonth,
   selectedYear: currentYear,
+  transactionsTypes: 'expense'
+
 };
 
 const filterSlice = createSlice({
@@ -19,8 +21,11 @@ const filterSlice = createSlice({
     setSelectedYear(state, action) {
       state.selectedYear = action.payload;
     },
+    setTransactionsType(state, action) {
+      state.transactionsTypes = action.payload;
+    }
   },
 });
 
-export const { setSelectedMonth, setSelectedYear } = filterSlice.actions;
+export const { setSelectedMonth, setSelectedYear, setTransactionsType } = filterSlice.actions;
 export default filterSlice.reducer;

@@ -38,7 +38,7 @@ const StatisticsDashboard = () => {
 
   const selectedMonth = useSelector((state) => state.filters?.selectedMonth);
   const selectedYear = useSelector((state) => state.filters?.selectedYear);
-
+  const type = useSelector((state) => state.filters?.transactionsTypes);
   const defaultMonth = monthOptions.find(
     (option) => option.value === selectedMonth
   );
@@ -49,7 +49,7 @@ const StatisticsDashboard = () => {
   useEffect(() => {
     if (selectedMonth && selectedYear) {
       const period = `${selectedYear}-${selectedMonth}`;
-      dispatch(fetchTransactions(period));
+      dispatch(fetchTransactions({period, type}));
     }
   }, [dispatch, selectedMonth, selectedYear]);
 

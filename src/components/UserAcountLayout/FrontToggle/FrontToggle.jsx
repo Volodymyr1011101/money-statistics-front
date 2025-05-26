@@ -1,15 +1,30 @@
 import React, { useState } from 'react';
 import s from './FrontToggle.module.css';
+import {useDispatch, useSelector} from "react-redux";
+import {setTransactionsType} from "../../../redux/filter/slice";
+import {fetchTransactions} from "../../../redux/transaction/operations";
 
-const FrontToggle = ({ onToggle, type = 'expense' }) => {
-  const [currentType, setCurrentType] = useState(type);
+const FrontToggle = ({ onToggle }) => {
+  const dispatch = useDispatch();
 
-  const handleToggle = () => {
+  const [currentType, setCurrentType] = useState('expense');
+
+  const selectedMonth = useSelector((state) => state.filters?.selectedMonth);
+  const selectedYear = useSelector((state) => state.filters?.selectedYear);
+  const type = useSelector((state) => state.filters?.transactionsTypes);
+
+  const period = `${selectedYear}-${selectedMonth}`;
+
+  const handleToggle = async () => {
     const newType = currentType === 'expense' ? 'income' : 'expense';
     setCurrentType(newType);
+    await dispatch(setTransactionsType(newType));
+    if (newType) {
+      console.log('newType', newType);
+      dispatch(fetchTransactions({period, type:newType}))
+    }
     if (onToggle) onToggle(newType);
   };
-
   return (
     <div className={s.container}>
       <div className={s.labels}>

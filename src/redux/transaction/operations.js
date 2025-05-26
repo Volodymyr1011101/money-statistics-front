@@ -18,7 +18,7 @@ export const fetchAllTransactions = createAsyncThunk(
                 return rejectWithValue('User is not authorized');
             }
 
-            setAuthHeader(token);
+      setAuthHeader(token);
 
             const response = await api.get('/');
             console.log(response.data);
@@ -32,22 +32,20 @@ export const fetchAllTransactions = createAsyncThunk(
 );
 
 export const fetchTransactions = createAsyncThunk(
-    'transactions/summary',
-    async (period, { getState, rejectWithValue }) => {
-        try {
-            const token = getState().auth?.token;
-            if (!token) {
-                return rejectWithValue('User is not authorized');
-            }
-            setAuthHeader(token);
-            const response = await api.get(`/summary?period=${period}`);
-            return response.data.stats;
-        } catch (error) {
-            return rejectWithValue(
-                error.response?.data?.message || error.message
-            );
-        }
+  "transactions/summary",
+  async (options, { getState, rejectWithValue }) => {
+    try {
+      const token = getState().auth?.token;
+      if (!token) {
+        return rejectWithValue("User is not authorized");
+      }
+      setAuthHeader(token);
+      const response = await api.get(`/summary?period=${options.period}&type=${options.type}`);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data?.message || error.message);
     }
+  }
 );
 
 export const createTransaction = createAsyncThunk(

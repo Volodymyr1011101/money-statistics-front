@@ -14,9 +14,11 @@ function TransactionsList() {
     const [selectedTransaction, setSelectedTransaction] = useState(null);
     const [showModalEditTransaction, setShowModalEditTransaction] =
         useState(false);
-    const transactions = useSelector(selectTransactions);
 
-    const scrollRef = useRef(null);
+  const transactions = useSelector(
+    (state) => state.transactions.allItems,
+  );
+  const scrollRef = useRef(null);
 
     // наразі поля не співпадають
     console.log(transactions);

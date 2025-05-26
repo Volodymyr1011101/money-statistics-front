@@ -9,8 +9,10 @@ import {
 
 const initialState = {
   items: [],
+  allItems: [],
   loading: false,
   error: null,
+  total: 0,
 };
 
 const transactionsSlice = createSlice({
@@ -25,7 +27,8 @@ const transactionsSlice = createSlice({
       })
       .addCase(fetchAllTransactions.fulfilled, (state, action) => {
         state.loading = false;
-        state.items = action.payload;
+        console.log(action)
+        state.allItems = action.payload;
       })
       .addCase(fetchAllTransactions.rejected, (state, action) => {
         state.loading = false;
@@ -37,7 +40,8 @@ const transactionsSlice = createSlice({
       })
       .addCase(fetchTransactions.fulfilled, (state, action) => {
         state.loading = false;
-        state.items = action.payload;
+        state.items = action.payload.result;
+        state.total = action.payload.total;
       })
       .addCase(fetchTransactions.rejected, (state, action) => {
         state.loading = false;
