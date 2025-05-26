@@ -4,7 +4,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
 }
 
 .transactionContainer {
@@ -48,13 +47,12 @@
     justify-content: center;
     cursor: pointer;
     overflow: hidden;
+    transition: background-color 150ms ease-in-out;
 }
-
 
 .fabContainer:hover {
     background-color: #1e2a38;
 }
-
 
 /* Tablet */
 
@@ -69,9 +67,8 @@
         width: 704px;
         overflow-y: auto;
         overflow-x: hidden;
-        background-color: #3B5D63;
+        background-color: #3b5d63;
     }
-
 
     .tableHeader {
         display: grid;
@@ -81,12 +78,11 @@
         padding: 0.1rem 2.25rem;
         color: white;
         height: 48px;
-        background-color: #3B5D63;
+        background-color: #3b5d63;
     }
 
-
     .invis {
-        color: #3B5D63;
+        color: #3b5d63;
     }
 
     .type {
@@ -94,21 +90,19 @@
     }
 
     .fabContainer {
-        position: absolute;
+        position: fixed;
         width: 64px;
         height: 64px;
         bottom: 20px;
         right: calc(50% - 336px);
-
     }
-
 
     /* Основной контейнер со скроллингом */
     .scroll-container {
         overflow-y: scroll;
         scrollbar-width: thin;
         /* Firefox */
-        scrollbar-color: #508F8C #294045;
+        scrollbar-color: #508f8c #294045;
         /* thumb и track для Firefox */
         padding-bottom: 28px;
     }
@@ -123,7 +117,7 @@
     }
 
     .scroll-container::-webkit-scrollbar-thumb {
-        background-color: #508F8C;
+        background-color: #508f8c;
         border-radius: 10px;
         border: 1px solid transparent;
     }
@@ -162,7 +156,5 @@
         width: 56px;
         height: 56px;
         right: calc(50% - 330px);
-
     }
-
 }

@@ -1,4 +1,7 @@
-import TransactionsItem from '../TransactionsItem/TransactionsItem';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { selectTransactions } from '../../../redux/transaction/selectors';
+
 import s from './TransactionsList.module.css';
 import { useEffect, useRef, useState } from 'react';
 import ModalEditTransaction from '../../ModalEditTransaction/ModalEditTransaction';
@@ -6,6 +9,8 @@ import ButtonAddTransaction from '../ButtonAddTransaction/ButtonAddTransaction';
 import ModalAddTransaction from '../../ModalAddTransaction/ModalAddTransaction';
 import { useSelector } from 'react-redux';
 import { selectTransactions } from '../../../redux/transaction/selectors';
+
+import TransactionsItem from '../TransactionsItem/TransactionsItem';
 
 function TransactionsList() {
     const [showModalAddTransaction, setShowModalAddTransaction] =

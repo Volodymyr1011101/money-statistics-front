@@ -6,7 +6,8 @@ import ModalEditTransaction from '../../ModalEditTransaction/ModalEditTransactio
 import ModalConfirmDelete from '../ModalConfirmDelete/ModalConfirmDelete.';
 import { deleteTransaction } from '../../../redux/transaction/operations';
 
-function TransactionsItem({ id, date, type, category, comment, sum, onEdit }) {
+function TransactionsItem({ transaction, onEdit }) {
+  const { id, date, type, category, comment, sum } = transaction;
   const dispatch = useDispatch();
   const isIncome = type === 'income';
 
@@ -26,13 +27,19 @@ function TransactionsItem({ id, date, type, category, comment, sum, onEdit }) {
     setShowModalDelete(false);
   };
 
+  const formattedDate = new Date(date).toLocaleDateString('uk-UA', {
+    day: '2-digit',
+    month: '2-digit',
+    year: '2-digit',
+  });
+
   return (
     <div className={s.container}>
       {/* Mobile */}
       <div className={isIncome ? s.transactionIncome : s.transactionExpense}>
         <div className={s.row}>
           <span>Date</span>
-          <span>{date}</span>
+          <span>{formattedDate}</span>
         </div>
         <div className={s.row}>
           <span>Type</span>
@@ -64,7 +71,7 @@ function TransactionsItem({ id, date, type, category, comment, sum, onEdit }) {
 
       {/* Tablet & Desktop */}
       <div className={s.tableBody}>
-        <p>{date}</p>
+        <p>{formattedDate}</p>
         <p className={s.type}>{isIncome ? '+' : '-'}</p>
         <p>{category}</p>
         <p className={s.comment}>{comment}</p>
