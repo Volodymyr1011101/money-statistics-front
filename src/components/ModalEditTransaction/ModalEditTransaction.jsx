@@ -1,18 +1,31 @@
 import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
-import { updateTransaction } from '../../redux/transaction/operations';
+import {
+  fetchAllTransactions,
+  updateTransaction,
+} from '../../redux/transaction/operations';
 
 import Modal from '../UserAcountLayout/Modal/Modal';
 import EditTransactionForm from '../EditTransactionForm/EditTransactionForm';
+import { normalizeDate } from '../../helpers/normalizeDate';
 
 const ModalEditTransaction = ({ onClose, transaction }) => {
   const dispatch = useDispatch();
 
   const handleSubmit = values => {
-    //TODO: наразі проблема на бекенді - поля "comment" нема i повертається помилка "comment" is not allowed"
-    dispatch(updateTransaction({ id: transaction.id, updatedData: values }))
+    const { date } = values;
+    const newDate = normalizeDate(date);
+    dispatch(
+      updateTransaction({
+        id: transaction._id,
+        updatedData: { ...values, date: newDate },
+      })
+    )
       .unwrap()
-      .then(() => onClose())
+      .then(() => {
+        dispatch(fetchAllTransactions());
+        onClose();
+      })
       .catch(error => {
         toast.error(error);
       });
