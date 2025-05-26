@@ -13,36 +13,27 @@ import {formatted} from "../../helpers/constants";
 
 // Регистрируем только нужные модули
 ChartJS.register(ArcElement, Tooltip, Legend, Title);
-const categoryColors = [
-    '#DFAD3F',
-    '#FFD8D0',
-    '#FD9498',
-    '#C5BAFF',
-    '#6E78E8',
-    '#4A56E2',
-    '#81E1FF',
-    '#24CCA7',
-    '#00AD84',
-    '#ff9bd2',
-];
-const data = {
-    datasets: [
-        {
-            data: [300, 500, 100, 400],
-            backgroundColor: categoryColors,
-            borderWidth: 0,
-            borderRadius: 0,
-            cutout: '70%'
-        }
-    ]
-};
+
+
 
 const options = {
     responsive: true,
 };
 
 
-const MyChart = ({balance}) => {
+const MyChart = ({balance, items}) => {
+
+    const data = {
+        datasets: [
+            {
+                data: items?.map((item) => item.total),
+                backgroundColor: items.map((item) => item.color),
+                borderWidth: 0,
+                borderRadius: 0,
+                cutout: '70%'
+            }
+        ]
+    };
     return (
         <div className={styles.wrapper}>
             <Doughnut data={data} options={options} />
