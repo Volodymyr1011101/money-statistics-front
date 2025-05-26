@@ -41,8 +41,8 @@ const EditTransactionForm = ({
       />
       <h2 className={s.title}>{title}</h2>
 
-      <div className={transaction.transactionType && s.disabledbutton}>
-        <FrontToggle type={transaction.transactionType} />
+      <div className={transaction.type && s.disabledbutton}>
+        <FrontToggle type={transaction.type} />
       </div>
 
       <Formik
@@ -51,7 +51,7 @@ const EditTransactionForm = ({
         onSubmit={handleSubmit}
       >
         <Form className={s.form}>
-          {transaction.transactionType === 'expense' && (
+          {transaction.type === 'expense' && (
             <Field className={s.form_input} name="category" as="select">
               {categories.map(item => (
                 <option value={item}>{item}</option>
