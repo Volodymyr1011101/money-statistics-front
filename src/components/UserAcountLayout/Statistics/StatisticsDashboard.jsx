@@ -61,18 +61,55 @@ const StatisticsDashboard = () => {
     dispatch(setSelectedYear(selectedOption.value));
   };
 
+  const customStyles = {
+    control: (base, state) => ({
+      ...base,
+      backgroundColor: "#355359",
+      border: "1px solid #fcfcfc",
+      borderRadius: "8px",
+      fontFamily: "Inter, sans-serif",
+      fontSize: "18px",
+      color: "#fcfcfc",
+      boxShadow: state.isFocused ? "0 0 0 1px #355359" : "none",
+      "&:hover": {
+        borderColor: "#fcfcfc",
+      },
+    }),
+    menu: (base) => ({
+      ...base,
+      backgroundColor: "#1e2f33",
+      borderRadius: "8px",
+      marginTop: "4px",
+      zIndex: 99,
+    }),
+    option: (base, state) => ({
+      ...base,
+      backgroundColor:
+        state.isFocused || state.isSelected ? "#355359" : "transparent",
+      color: "#fcfcfc",
+      padding: "8px 12px",
+      cursor: "pointer",
+    }),
+    singleValue: (base) => ({
+      ...base,
+      color: "#fcfcfc",
+    }),
+  };
+
   return (
     <div className={css.selectWrapper}>
       <Select
         className={css.selectContainer}
-        classNamePrefix="select"
+        styles={customStyles}
+        components={{ IndicatorSeparator: () => null }}
         onChange={handleMonthChange}
         options={monthOptions}
         value={defaultMonth}
       />
       <Select
         className={css.selectContainer}
-        classNamePrefix="select"
+        styles={customStyles}
+        components={{ IndicatorSeparator: () => null }}
         onChange={handleYearChange}
         options={yearOptions}
         value={defaultYear}

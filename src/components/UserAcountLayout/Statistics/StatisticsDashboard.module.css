@@ -9,45 +9,7 @@
 
 .selectContainer {
   width: 100%;
-  color: #fcfcfc;
-}
-
-:global(.select__control) {
-  background-color: #355359;
-  border: 1px solid #fcfcfc;
-  border-radius: 8px;
-  /* padding: 6px; */
-
-  font-family: "Inter", sans-serif;
-  font-size: 18px;
-  color: #fcfcfc;
-}
-
-:global(.select__control--is-focused) {
-  border-color: #355359;
-}
-
-:global(.select__menu) {
-  background-color: #1e2f33;
-  border-radius: 8px;
-  margin-top: 4px;
-}
-
-:global(.select__option) {
-  padding: 8px 12px;
-  cursor: pointer;
-}
-
-:global(.select__option--is-focused) {
-  background-color: #355359;
-}
-
-:global(.select__option--is-selected) {
-  background-color: #355359;
-}
-
-:global(.select__single-value) {
-  color: #fcfcfc;
+  /* color: #fcfcfc; */
 }
 
 @media (min-width: 768px) {
