@@ -47,15 +47,10 @@ function TransactionsList() {
                         <p className={s.stub}>There are no transactions yet</p>
                     ) : (
                         <>
-                            {transactions.map((item, index) => (
+                            {transactions.map(item => (
                                 <TransactionsItem
-                                    key={item.id + item.sum + index}
-                                    id={item.id}
-                                    date={item.date}
-                                    type={item.transactionType}
-                                    category={item.category}
-                                    comment={item.comment}
-                                    sum={item.sum}
+                                    key={item.id}
+                                    transaction={item}
                                     onEdit={() => handleEditClick(item)}
                                 />
                             ))}

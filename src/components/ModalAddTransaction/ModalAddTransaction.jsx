@@ -62,7 +62,12 @@ const ModalAddTransaction = ({ onClose }) => {
             const { date } = values;
             const newDate = normalizeDate(date);
             await dispatch(
-                createTransaction({ ...values, date: newDate })
+                createTransaction({
+                    ...values,
+                    type,
+                    date: newDate,
+                    category: type === 'income' ? 'Incomes' : values.category,
+                })
             ).unwrap();
             onClose();
             dispatch(refreshUserThunk());
@@ -81,7 +86,13 @@ const ModalAddTransaction = ({ onClose }) => {
                     onClose={onClose}
                 />
                 <h2 className={s.title}>Add transaction</h2>
-                <FrontToggle type={type} onToggle={setType} />
+                <FrontToggle
+                    type={type}
+                    onToggle={prev => {
+                        console.log(prev);
+                        setType(prev !== 'expense' ? 'income' : 'expense');
+                    }}
+                />
 
                 <Formik
                     initialValues={initialValues}
