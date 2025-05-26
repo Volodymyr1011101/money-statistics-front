@@ -13,7 +13,7 @@ const Statistics = () => {
     <div className={css.statisticWrapper}>
       <div className={css.toggleChart}>
         <FrontToggle />
-          <MyChart balance={balance}/>
+          <MyChart balance={balance} items={items} />
       </div>
       <div className={css.dashTable}>
         <StatisticsDashboard />

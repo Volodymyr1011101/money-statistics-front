@@ -14,10 +14,10 @@ const StatisticsTable = ({ transactions, total }) => {
           <li key={idx} className={s.item}>
             <div className={s.colCategory}>
               <span className={s.colorBox} style={{ backgroundColor: color }} />
-              {name}
+              {category}
             </div>
             <div className={s.colSum}>
-              {total.toLocaleString(undefined, {
+              {total?.toLocaleString(undefined, {
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2,
               })}
