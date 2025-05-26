@@ -1,7 +1,3 @@
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { selectTransactions } from '../../../redux/transaction/selectors';
-
 import s from './TransactionsList.module.css';
 import { useEffect, useRef, useState } from 'react';
 import ModalEditTransaction from '../../ModalEditTransaction/ModalEditTransaction';
