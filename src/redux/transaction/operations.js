@@ -9,6 +9,25 @@ const setAuthHeader = (token) => {
   api.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
+export const fetchAllTransactions = createAsyncThunk(
+  "transactions/fetchAll",
+  async (_, { getState, rejectWithValue }) => {
+    try {
+      const token = getState().auth?.token;
+      if (!token) {
+        return rejectWithValue("User is not authorized");
+      }
+
+      setAuthHeader(token);
+
+      const response = await api.get("/");
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data?.message || error.message);
+    }
+  }
+);
+
 export const fetchTransactions = createAsyncThunk(
   "transactions/summary",
   async (period, { getState, rejectWithValue }) => {
