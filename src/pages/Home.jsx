@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import TransactionsList from "../components/UserAcountLayout/TransactionsList/TransactionsList";
 
-import { fetchTransactions } from "../redux/transaction/operations";
+import { fetchAllTransactions } from "../redux/transaction/operations";
 import { fetchCategories } from "../redux/categories/operations";
 
 import { selectIsLoggedIn } from "../redux/auth/selectors";
@@ -13,7 +13,7 @@ const Home = () => {
 
   useEffect(() => {
     if (isLoggedIn) {
-      dispatch(fetchTransactions());
+      dispatch(fetchAllTransactions());
       dispatch(fetchCategories());
     }
   }, [dispatch, isLoggedIn]);
