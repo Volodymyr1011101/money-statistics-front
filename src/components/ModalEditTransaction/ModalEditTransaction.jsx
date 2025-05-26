@@ -8,22 +8,24 @@ import {
 import Modal from '../UserAcountLayout/Modal/Modal';
 import EditTransactionForm from '../EditTransactionForm/EditTransactionForm';
 import { normalizeDate } from '../../helpers/normalizeDate';
+import { refreshUserThunk } from '../../redux/auth/operations';
 
 const ModalEditTransaction = ({ onClose, transaction }) => {
   const dispatch = useDispatch();
 
   const handleSubmit = values => {
     const { date } = values;
-    const newDate = normalizeDate(date);
+    const newDate = normalizeDate(new Date(date));
     dispatch(
       updateTransaction({
-        id: transaction._id,
+        id: transaction.id,
         updatedData: { ...values, date: newDate },
       })
     )
       .unwrap()
       .then(() => {
         dispatch(fetchAllTransactions());
+        dispatch(refreshUserThunk());
         onClose();
       })
       .catch(error => {

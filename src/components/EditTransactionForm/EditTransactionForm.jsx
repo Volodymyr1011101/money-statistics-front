@@ -42,7 +42,7 @@ const EditTransactionForm = ({
       <h2 className={s.title}>{title}</h2>
 
       <div className={transaction.type && s.disabledbutton}>
-        <FrontToggle type={transaction.type} />
+        <FrontToggle defaultType={transaction.type} />
       </div>
 
       <Formik

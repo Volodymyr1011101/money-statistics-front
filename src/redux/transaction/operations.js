@@ -75,7 +75,7 @@ export const updateTransaction = createAsyncThunk(
                 return rejectWithValue('User is not authorized');
             }
             setAuthHeader(token);
-            const response = await api.put(`/update/${id}`, updatedData);
+            const response = await api.put(`/${id}`, updatedData);
             return response.data;
         } catch (error) {
             return rejectWithValue(

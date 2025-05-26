@@ -4,10 +4,10 @@ import {useDispatch, useSelector} from "react-redux";
 import {setTransactionsType} from "../../../redux/filter/slice";
 import {fetchTransactions} from "../../../redux/transaction/operations";
 
-const FrontToggle = ({ onToggle }) => {
+const FrontToggle = ({ onToggle, defaultType = 'expense' }) => {
   const dispatch = useDispatch();
 
-  const [currentType, setCurrentType] = useState('expense');
+  const [currentType, setCurrentType] = useState(defaultType);
 
   const selectedMonth = useSelector((state) => state.filters?.selectedMonth);
   const selectedYear = useSelector((state) => state.filters?.selectedYear);

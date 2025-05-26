@@ -87,7 +87,7 @@ const ModalAddTransaction = ({ onClose }) => {
                 />
                 <h2 className={s.title}>Add transaction</h2>
                 <FrontToggle
-                    type={type}
+                    defaultType={type}
                     onToggle={prev => {
                         setType(prev !== 'expense' ? 'income' : 'expense');
                     }}
