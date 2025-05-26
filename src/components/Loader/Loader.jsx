@@ -1,11 +1,11 @@
-import { RingLoader } from "react-spinners";
+import { FadeLoader } from "react-spinners";
 
 import s from "./Loader.module.css";
 
 export const Loader = () => {
   return (
     <div className={s.loader}>
-      <RingLoader color="#0B6016" />
+      <FadeLoader color="#4FC3F7" />
     </div>
   );
 };
