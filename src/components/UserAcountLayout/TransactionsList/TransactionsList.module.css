@@ -33,8 +33,8 @@
 
 .fabContainer {
     position: fixed;
-    right: calc(50% - 144px);
-    bottom: 1rem;
+    right: 40px;
+    bottom: 40px;
     width: 56px;
     height: 56px;
     border-radius: 50%;
@@ -93,8 +93,6 @@
         position: fixed;
         width: 64px;
         height: 64px;
-        bottom: 20px;
-        right: calc(50% - 336px);
     }
 
     /* Основной контейнер со скроллингом */
@@ -152,6 +150,5 @@
     .fabContainer {
         width: 56px;
         height: 56px;
-        right: calc(50% - 330px);
     }
 }
