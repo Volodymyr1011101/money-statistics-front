@@ -59,14 +59,23 @@
 .editButton {
     background: none;
     padding: 0.25rem 0.5rem;
-    border-radius: 5px;
+    border-radius: 8px;
     color: white;
     cursor: pointer;
     font-size: 0.85rem;
 }
 
+
 .deleteButton {
     border: 1px solid #ccc;
+}
+
+.editButtonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+
 }
 
 .editButton {
@@ -79,7 +88,7 @@
     border-color: #ff6b6b;
 }
 
-.editButton:hover {
+.editButtonContainer:hover {
     background-color: #54a0ff;
     border-color: #54a0ff;
 }
@@ -145,6 +154,12 @@
         padding: 4px 2px;
         margin-right: 1rem;
     }
+
+    .editButton:hover {
+        background-color: #54a0ff;
+        border-color: #54a0ff;
+    }
+
 
     .comment {
         width: 80%;
