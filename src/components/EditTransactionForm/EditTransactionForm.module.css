@@ -88,6 +88,10 @@
   transition: border-color 250ms ease;
 }
 
+.form_input::placeholder {
+  color: #3b5d63;
+}
+
 .form_input:hover {
   color: #081222;
   border-color: #3b5d63;
@@ -102,6 +106,10 @@
   padding-right: 12px;
   position: relative;
   z-index: 100;
+}
+
+.form_input_data::placeholder {
+  color: #3b5d63;
 }
 
 .form_wrapper_data:hover {
