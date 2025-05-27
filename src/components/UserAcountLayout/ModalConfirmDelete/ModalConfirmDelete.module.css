@@ -62,7 +62,7 @@
 }
 
 .btnDelete {
-    background-color: red;
+    background-color: #B20202;
     color: white;
 }
 
@@ -85,7 +85,7 @@
 /* Планшет */
 @media (min-width: 768px) {
     .modal {
-        max-width: 533px;
+        width: 533px;
         padding: 53px 61px 47px;
         gap: 24px;
     }
