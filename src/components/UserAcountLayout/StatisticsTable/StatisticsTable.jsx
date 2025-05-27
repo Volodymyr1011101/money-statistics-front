@@ -1,7 +1,9 @@
 import React from 'react';
 import s from './StatisticsTable.module.css';
+import {useSelector, useDispatch} from 'react-redux';
 
 const StatisticsTable = ({ transactions, total }) => {
+    const totalLabel = useSelector(state => state.filters.transactionsTypes);
   return (
     <div className={s.container}>
       <div className={s.header}>
@@ -26,7 +28,7 @@ const StatisticsTable = ({ transactions, total }) => {
         ))}
       </ul>
       <div className={s.footer}>
-        <span>Expenses:</span>
+        <span>{totalLabel === 'expense' ? 'Expenses:' : 'Incomes:'}</span>
         <span className={s.total}>
           {total.toLocaleString(undefined, {
             minimumFractionDigits: 2,

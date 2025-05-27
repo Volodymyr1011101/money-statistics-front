@@ -14,6 +14,8 @@ const ModalEditTransaction = ({ onClose, transaction }) => {
   const dispatch = useDispatch();
 
   const handleSubmit = values => {
+      console.log(values);
+
     const { date } = values;
     const newDate = normalizeDate(new Date(date));
     dispatch(

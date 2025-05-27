@@ -14,7 +14,8 @@ const Home = () => {
   useEffect(() => {
     if (isLoggedIn) {
       dispatch(fetchAllTransactions());
-      dispatch(fetchCategories());
+      dispatch(fetchCategories('income'));
+      dispatch(fetchCategories('expense'));
     }
   }, [dispatch, isLoggedIn]);
 

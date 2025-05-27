@@ -23,9 +23,12 @@ const filterSlice = createSlice({
     },
     setTransactionsType(state, action) {
       state.transactionsTypes = action.payload;
+    },
+    resetTransactionsType(state, action) {
+      state.transactionsTypes = initialState.transactionsTypes;
     }
   },
 });
 
-export const { setSelectedMonth, setSelectedYear, setTransactionsType } = filterSlice.actions;
+export const { setSelectedMonth, setSelectedYear, setTransactionsType, resetTransactionsType } = filterSlice.actions;
 export default filterSlice.reducer;

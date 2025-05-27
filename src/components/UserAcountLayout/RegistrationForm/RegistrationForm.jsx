@@ -12,6 +12,7 @@ import Logo from "../../../UI/Logo/Logo";
 import css from "./RegistrationForm.module.css";
 import logo_modal from "../../../assets/Logo_modal.svg";
 import { passwordRegex } from "../../../helpers/constants";
+import {useNavigate} from "react-router-dom";
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
@@ -45,14 +46,16 @@ const RegistrationForm = ({ handleFlip }) => {
   const emailId = useId();
   const passwordId = useId();
   const confirmPasswordId = useId();
-
+  const navigate = useNavigate();
   const handleSubmit = async (values, actions) => {
-    dispatch(register(values))
+    await dispatch(register(values))
       .unwrap()
       .catch((error) => {
         toast.error(error);
       });
     actions.resetForm();
+    navigate('/login')
+    handleFlip();
   };
 
   return (

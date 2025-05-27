@@ -1,5 +1,4 @@
 export function normalizeDate(date) {
-    console.log(date);
     const year = date.getFullYear();
     const month = checkZero(date.getMonth() + 1);
     const day = checkZero(date.getDate());
@@ -12,3 +11,6 @@ function checkZero(value) {
     }
     return value;
 }
+
+
+const date = new Date().getDate();

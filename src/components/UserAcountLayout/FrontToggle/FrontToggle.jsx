@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import s from './FrontToggle.module.css';
 import {useDispatch, useSelector} from "react-redux";
-import {setTransactionsType} from "../../../redux/filter/slice";
+import {resetTransactionsType, setTransactionsType} from "../../../redux/filter/slice";
 import {fetchTransactions} from "../../../redux/transaction/operations";
 
 const FrontToggle = ({ onToggle, defaultType = 'expense' }) => {
@@ -20,11 +20,16 @@ const FrontToggle = ({ onToggle, defaultType = 'expense' }) => {
     setCurrentType(newType);
     await dispatch(setTransactionsType(newType));
     if (newType) {
-      console.log('newType', newType);
-      dispatch(fetchTransactions({period, type:newType}))
+      dispatch(fetchTransactions({period, type: newType}))
     }
     if (onToggle) onToggle(newType);
   };
+
+  useEffect(() => {
+    return () => {
+      dispatch(resetTransactionsType());
+    }
+  }, [])
   return (
     <div className={s.container}>
       <div className={s.labels}>
