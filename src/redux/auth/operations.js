@@ -60,8 +60,8 @@ export const register = createAsyncThunk(
         email,
         password,
       });
-      console.log(response);
       setAuthHeader(response.data.user.accessToken);
+      toast.success(response.data.message);
       return response.data;
     } catch (error) {
       const message =

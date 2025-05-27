@@ -26,10 +26,6 @@ function TransactionsList() {
         setShowModalEditTransaction(true);
     };
 
-    const handleModalStateChange = () => {
-        setShowModalAddTransaction(prev => !prev);
-    };
-
     return (
         <div className={s.wrapper}>
             <div className={s.transactionContainer}>
@@ -50,7 +46,7 @@ function TransactionsList() {
                         <>
                             {transactions.map(item => (
                                 <TransactionsItem
-                                    key={item.id}
+                                    key={item._id}
                                     transaction={item}
                                     onEdit={() => handleEditClick(item)}
                                 />

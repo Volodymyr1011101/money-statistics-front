@@ -16,7 +16,7 @@ import { normalizeDate } from '../../helpers/normalizeDate';
 const ModalAddTransaction = ({ onClose }) => {
     const [type, setType] = useState('expense');
     const dispatch = useDispatch();
-
+    const { expense } = useSelector(state => state.categories);
     useEffect(() => {
         const handleEsc = e => {
             if (e.key === 'Escape') onClose();
@@ -43,19 +43,6 @@ const ModalAddTransaction = ({ onClose }) => {
         comment: Yup.string().max(100, 'Max 100 characters'),
         category: Yup.string(),
     });
-
-    const category = [
-        'Main expenses',
-        'Products',
-        'Car',
-        'Self care',
-        'Child care',
-        'Household products',
-        'Education',
-        'Leisure',
-        'Other expenses',
-        'Entertainment',
-    ];
 
     const handleSubmit = async (values, action) => {
         try {
@@ -113,12 +100,12 @@ const ModalAddTransaction = ({ onClose }) => {
                                     >
                                         Category
                                     </option>
-                                    {category.map(item => (
+                                    {expense?.map(item => (
                                         <option
                                             className={s.option}
-                                            value={item}
+                                            value={item.name}
                                         >
-                                            {item}
+                                            {item.name}
                                         </option>
                                     ))}
                                 </Field>

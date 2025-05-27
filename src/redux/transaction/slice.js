@@ -27,7 +27,6 @@ const transactionsSlice = createSlice({
       })
       .addCase(fetchAllTransactions.fulfilled, (state, action) => {
         state.loading = false;
-        console.log(action)
         state.allItems = action.payload;
       })
       .addCase(fetchAllTransactions.rejected, (state, action) => {

@@ -26,7 +26,7 @@ const MyChart = ({balance, items}) => {
     const data = {
         datasets: [
             {
-                data: items?.map((item) => item.total),
+                data: items.length > 0 ? items?.map((item) => item.total) : [0.0000000000001],
                 backgroundColor: items.map((item) => item.color),
                 borderWidth: 0,
                 borderRadius: 0,

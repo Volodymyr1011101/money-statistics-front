@@ -11,7 +11,7 @@ const setAuthHeader = (token) => {
 
 export const fetchCategories = createAsyncThunk(
   "categories/fetchAll",
-  async (_, { getState, rejectWithValue }) => {
+  async (type, { getState, rejectWithValue }) => {
     try {
       const token = getState().auth?.token;
       if (!token) {
@@ -20,8 +20,8 @@ export const fetchCategories = createAsyncThunk(
 
       setAuthHeader(token);
 
-      const response = await categoriesApi.get("/");
-      return response.data;
+      const response = await categoriesApi.get(`/?type=${type}`);
+      return {type, ...response.data};
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || error.message);
     }

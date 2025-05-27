@@ -7,7 +7,7 @@ import {useSelector} from "react-redux";
 
 const Statistics = () => {
   const {items, total} = useSelector(state => state.transactions);
-    console.log()
+
     const {balance} = useSelector(state => state.auth.user);
   return (
     <div className={css.statisticWrapper}>
