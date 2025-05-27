@@ -86,7 +86,7 @@ function TransactionsItem({ transaction, onEdit }) {
         <LuPencil
           size={28}
           className={s.editButton}
-          onClick={handleDeleteClick}
+          onClick={handleEditClick}
         />
         {/* <button className={s.editButton} onClick={handleEditClick}>
           <LuPencil size={18} />
