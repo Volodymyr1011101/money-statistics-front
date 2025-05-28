@@ -14,7 +14,6 @@ import { refreshUserThunk } from "../../redux/auth/operations.js";
 import { normalizeDate } from "../../helpers/normalizeDate";
 
 const ModalAddTransaction = ({ onClose }) => {
-  const [type, setType] = useState("expense");
   const dispatch = useDispatch();
   const { expense } = useSelector((state) => state.categories);
   useEffect(() => {
@@ -41,19 +40,21 @@ const ModalAddTransaction = ({ onClose }) => {
       .required("Required"),
     date: Yup.date().typeError("Invalid date").required("Required"),
     comment: Yup.string().max(100, "Max 100 characters"),
-    category: Yup.string(),
+    category: Yup.string().when("type", {
+      is: "expense",
+      then: (schema) => schema.required("Category is required"),
+      otherwise: (schema) => schema.notRequired(),
+    }),
   });
 
-  const handleSubmit = async (values, action) => {
+  const handleSubmit = async (values) => {
     try {
-      const { date } = values;
-      const newDate = normalizeDate(date);
+      const newDate = normalizeDate(values.date);
       await dispatch(
         createTransaction({
           ...values,
-          type,
           date: newDate,
-          category: type === "income" ? "Incomes" : values.category,
+          category: values.type === "income" ? "Incomes" : values.category,
         })
       ).unwrap();
       onClose();
@@ -73,78 +74,96 @@ const ModalAddTransaction = ({ onClose }) => {
           onClose={onClose}
         />
         <h2 className={s.title}>Add transaction</h2>
-        <FrontToggle
-          defaultType={type}
-          onToggle={(prev) => {
-            setType(prev !== "expense" ? "income" : "expense");
-          }}
-        />
 
         <Formik
           initialValues={initialValues}
           validationSchema={validation}
           onSubmit={handleSubmit}
         >
-          <Form className={s.form}>
-            {type === "expense" && (
-              <div className={s.input_wrap}>
-                <Field className={s.form_select} as="select" name="category">
-                  <option className={s.option} value="" disabled>
-                    Category
-                  </option>
-                  {expense?.map((item) => (
-                    <option className={s.option} value={item.name}>
-                      {item.name}
-                    </option>
-                  ))}
-                </Field>
-              </div>
-            )}
-            <div className={s.wrapper_Tab}>
-              <div className={s.input_wrap}>
-                <Field
-                  className={s.form_input}
-                  type="text"
-                  name="sum"
-                  placeholder="0.00"
-                />
-                <ErrorMessage name="sum" component="div" className={s.error} />
-              </div>
-              <div className={s.form_wrapper_data}>
+          {({ values, setFieldValue }) => (
+            <Form className={s.form}>
+              <FrontToggle
+                defaultType={values.type}
+                onToggle={() => {
+                  const newType =
+                    values.type === "expense" ? "income" : "expense";
+                  setFieldValue("type", newType);
+                  setFieldValue("category", "");
+                }}
+              />
+              {values.type === "expense" && (
                 <div className={s.input_wrap}>
-                  <DataField name="date" className={s.form_input_data} />
+                  <Field className={s.form_select} as="select" name="category">
+                    <option className={s.option} value="" disabled>
+                      Category
+                    </option>
+                    {expense?.map((item) => (
+                      <option
+                        key={item._id}
+                        className={s.option}
+                        value={item.name}
+                      >
+                        {item.name}
+                      </option>
+                    ))}
+                  </Field>
                   <ErrorMessage
-                    name="date"
+                    name="category"
                     component="div"
                     className={s.error}
                   />
                 </div>
-                <FaRegCalendarAlt className={s.icon} />
+              )}
+              <div className={s.wrapper_Tab}>
+                <div className={s.input_wrap}>
+                  <Field
+                    className={s.form_input}
+                    type="text"
+                    name="sum"
+                    placeholder="0.00"
+                  />
+                  <ErrorMessage
+                    name="sum"
+                    component="div"
+                    className={s.error}
+                  />
+                </div>
+                <div className={s.form_wrapper_data}>
+                  <div className={s.input_wrap}>
+                    <DataField name="date" className={s.form_input_data} />
+                    <ErrorMessage
+                      name="date"
+                      component="div"
+                      className={s.error}
+                    />
+                  </div>
+                  <FaRegCalendarAlt className={s.icon} />
+                </div>
               </div>
-            </div>
 
-            <div className={s.input_wrap}>
-              <Field
-                className={s.form_input}
-                type="text"
-                name="comment"
-                placeholder="Comment"
-              />
-              <ErrorMessage
-                name="comment"
-                component="div"
-                className={s.error}
-              />
-            </div>
-            <div className={s.buttons_modal}>
-              <Button className={s.btn_modal} type="submit">
-                Add
-              </Button>
-              <Button className={s.btn_modal} onClick={onClose}>
-                Cancel
-              </Button>
-            </div>
-          </Form>
+              <div className={s.input_wrap}>
+                <Field
+                  className={s.form_input}
+                  type="text"
+                  name="comment"
+                  placeholder="Comment"
+                />
+                <ErrorMessage
+                  name="comment"
+                  component="div"
+                  className={s.error}
+                />
+              </div>
+              <div className={s.buttons_modal}>
+                <Button className={s.btn_modal} type="submit">
+                  Add
+                </Button>
+                <Button className={s.btn_modal} onClick={onClose}>
+                  Cancel
+                </Button>
+              </div>
+            </Form>
+          )}
         </Formik>
       </div>
     </div>
