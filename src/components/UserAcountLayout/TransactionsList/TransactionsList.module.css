@@ -33,7 +33,7 @@
 
 .fabContainer {
     position: fixed;
-    right: 40px;
+    right: calc(50% - 136px);
     bottom: 40px;
     width: 56px;
     height: 56px;
@@ -91,6 +91,8 @@
 
     .fabContainer {
         position: fixed;
+        right: calc(50% - 336px);
+
         width: 64px;
         height: 64px;
     }
@@ -150,5 +152,8 @@
     .fabContainer {
         width: 56px;
         height: 56px;
+        right: calc(50% - 586px);
+        bottom: 60px;
+
     }
 }
