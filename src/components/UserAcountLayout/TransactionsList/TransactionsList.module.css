@@ -33,8 +33,9 @@
 
 .fabContainer {
     position: fixed;
-    right: 40px;
-    bottom: 40px;
+    right: max(calc(100vw / 2 - 144px), 10px);
+    top: max(calc(100vh - 72px), 450px);
+    margin-left: 0;
     width: 56px;
     height: 56px;
     border-radius: 50%;
@@ -90,13 +91,18 @@
     }
 
     .fabContainer {
-        position: fixed;
+        position: absolute;
+        top: auto;
+        /*calc(100% - 80px);*/
+        right: 16px;
+        bottom: 16px;
         width: 64px;
         height: 64px;
     }
 
     /* Основной контейнер со скроллингом */
     .scroll-container {
+        position: relative;
         overflow-y: scroll;
         scrollbar-width: thin;
         /* Firefox */

@@ -53,9 +53,9 @@ function TransactionsList() {
                             ))}
                         </>
                     )}
-                </div>
-                <div className={s.fabContainer}>
-                    <ButtonAddTransaction className={s.fab} />
+                    <div className={s.fabContainer}>
+                        <ButtonAddTransaction className={s.fab} />
+                    </div>
                 </div>
             </div>
 
