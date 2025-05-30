@@ -8,7 +8,6 @@ import { selectIsRefreshing } from "./redux/auth/selectors";
 import { refreshUserThunk } from "./redux/auth/operations";
 import { Suspense } from "react";
 import { Loader } from "./components/Loader/Loader";
-
 const CustomLoader = () => {
   const isLoading = useSelector((state) => state.isLoading);
   return isLoading && <Loader />;

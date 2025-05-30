@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Img from '../../../assets/currency_img.png'
+import Img from '../../../assets/currency_img.webp'
 import s from '../Currency/Currency.module.css'
 import { fetchCurrencyRates } from '../../../helpers/fetchCurrencyRates';
 import TableCurrency from '../TableCurrency/TableCurrency';

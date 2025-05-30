@@ -11,7 +11,7 @@ import css from "./LoginForm.module.css";
 import Button from "../../../UI/Button/Button";
 import { loginThunk } from "../../../redux/auth/operations";
 
-import Img from "../../../assets/currency_img.png";
+import Img from "../../../assets/currency_img.webp";
 import logo_modal from "../../../assets/Logo_modal.svg";
 import Logo from "../../../UI/Logo/Logo";
 

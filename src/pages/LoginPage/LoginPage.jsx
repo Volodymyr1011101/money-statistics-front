@@ -2,7 +2,7 @@ import LoginForm from "../../components/UserAcountLayout/LoginForm/LoginForm";
 import styles from "./styles.module.scss";
 import RegistrationForm from "../../components/UserAcountLayout/RegistrationForm/RegistrationForm";
 import { useEffect, useState } from "react";
-import Img from "../../assets/currency_img.png";
+import Img from "../../assets/currency_img.webp";
 
 const LoginPage = ({ isRegister = false }) => {
   const [isLogin, setIsLogin] = useState(!isRegister);
