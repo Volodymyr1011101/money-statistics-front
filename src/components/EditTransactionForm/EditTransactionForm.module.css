@@ -154,6 +154,9 @@
   margin-top: 4px;
   font-size: 10px;
   color: #b20202;
+  position: absolute;
+  left: 0;
+  bottom: -12px;
 }
 
 .input_wrap {
