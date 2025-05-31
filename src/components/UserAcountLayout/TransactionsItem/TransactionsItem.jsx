@@ -55,8 +55,11 @@ function TransactionsItem({ transaction, onEdit }) {
         </div>
         <div className={s.row}>
           <span>Comment</span>
-          <span>{comment}</span>
+          <span className={s.comment} title={comment}>
+            {comment}
+          </span>
         </div>
+
         <div className={s.row}>
           <span>Sum</span>
           <span className={isIncome ? s.income : s.expense}>
@@ -81,16 +84,15 @@ function TransactionsItem({ transaction, onEdit }) {
         <p>{formattedDate}</p>
         <p className={s.type}>{isIncome ? '+' : '-'}</p>
         <p>{category}</p>
-        <p className={s.comment}>{comment}</p>
-        <p>{sum}</p>
+        <p className={s.comment} title={comment}>
+          {comment}
+        </p>
+        <p className={s.sum}>{sum}</p>
         <LuPencil
           size={28}
           className={s.editButton}
           onClick={handleEditClick}
         />
-        {/* <button className={s.editButton} onClick={handleEditClick}>
-          <LuPencil size={18} />
-        </button> */}
         <button className={s.deleteButton} onClick={handleDeleteClick}>
           Delete
         </button>

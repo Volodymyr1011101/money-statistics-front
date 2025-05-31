@@ -38,6 +38,17 @@
 
 }
 
+.comment {
+    width: 80%;
+    max-width: 150px;
+    white-space: nowrap;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: right;
+}
+
 .income {
     color: #1dd1a1;
     font-weight: bold;
@@ -149,6 +160,17 @@
         text-align: center;
     }
 
+    .comment {
+        width: 100%;
+        max-width: 150px;
+        text-align: left;
+    }
+
+
+    .sum {
+        padding-left: 8px;
+    }
+
     .editButton {
         text-align: left;
         padding: 4px 2px;
@@ -161,12 +183,6 @@
     }
 
 
-    .comment {
-        width: 80%;
-        white-space: normal;
-        word-break: break-word;
-        overflow-wrap: break-word;
-    }
 
 
     /* Desktop */
