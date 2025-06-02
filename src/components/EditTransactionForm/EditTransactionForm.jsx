@@ -62,7 +62,7 @@ const EditTransactionForm = ({
             <div>
               <Field
                 className={s.form_input}
-                type="text"
+                type="number"
                 name="sum"
                 placeholder="0.00"
               />

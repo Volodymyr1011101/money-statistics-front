@@ -1,3 +1,9 @@
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .backdrop {
   position: fixed;
   top: 0;
@@ -46,7 +52,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
 }
 
 .wrapper_Tab {
@@ -91,6 +97,7 @@
   color: #081222;
   border-color: #3b5d63;
 }
+
 
 .form_wrapper_data {
   display: flex;
@@ -149,6 +156,9 @@
   margin-top: 4px;
   font-size: 10px;
   color: #b20202;
+  position: absolute;
+  left: 0;
+  bottom: -12px;
 }
 
 .input_wrap {
