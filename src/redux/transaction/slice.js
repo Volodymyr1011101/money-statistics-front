@@ -5,6 +5,7 @@ import {
   updateTransaction,
   deleteTransaction,
   fetchAllTransactions,
+  fetchPaginatedTransactions,
 } from "./operations.js";
 
 const initialState = {
@@ -46,6 +47,21 @@ const transactionsSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
+      .addCase(fetchPaginatedTransactions.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchPaginatedTransactions.fulfilled, (state, action) => {
+        state.loading = false;
+        if (Array.isArray(action.payload)) {
+          state.items = [...state.items, ...action.payload];
+        }
+      })
+      .addCase(fetchPaginatedTransactions.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
       .addCase(createTransaction.pending, (state) => {
         state.loading = true;
         state.error = null;

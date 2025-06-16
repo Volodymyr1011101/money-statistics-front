@@ -1,11 +1,14 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import TransactionsList from '../components/UserAcountLayout/TransactionsList/TransactionsList';
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import TransactionsList from "../components/UserAcountLayout/TransactionsList/TransactionsList";
 
-import { fetchAllTransactions } from '../redux/transaction/operations';
-import { fetchCategories } from '../redux/categories/operations';
+import {
+  fetchAllTransactions,
+  fetchPaginatedTransactions,
+} from "../redux/transaction/operations";
+import { fetchCategories } from "../redux/categories/operations";
 
-import { selectIsLoggedIn } from '../redux/auth/selectors';
+import { selectIsLoggedIn } from "../redux/auth/selectors";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -13,9 +16,9 @@ const Home = () => {
 
   useEffect(() => {
     if (isLoggedIn) {
-      dispatch(fetchAllTransactions());
-      dispatch(fetchCategories('income'));
-      dispatch(fetchCategories('expense'));
+      dispatch(fetchPaginatedTransactions({ page: 1, perPage: 10 }));
+      dispatch(fetchCategories("income"));
+      dispatch(fetchCategories("expense"));
     }
   }, [dispatch, isLoggedIn]);
 
